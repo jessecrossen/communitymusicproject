@@ -1,0 +1,65 @@
+h1 {
+	font-family: sans-serif;
+}
+
+iframe#nav {
+  border: 0px;
+  width: 100%;
+  height: 100px;
+}
+
+hr {
+	clear: both;
+}
+
+ul.menu {
+	margin-left: 2em;
+	padding: 0px;
+}
+ul.menu li {
+	display: inline;
+	margin-right: 1em;
+	list-style-type: none;
+}
+
+p.album, p.artist {
+	clear: both;
+}
+p.album img, p.artist img, object.video {
+	display: block;
+	float: left;
+	border: 0px;
+	margin: 0 1em 1em 0;
+}
+
+ol.tracks ul {
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+ol.tracks ul li { 
+	display: inline;
+	list-style-type: none;
+}
+ol.tracks ul li:before { 
+	content: "\0020 \0020 \2022 \0020";
+}
+
+ol.tracks > li {
+	clear: both;
+}
+
+img.mail {
+  vertical-align: text-bottom;
+}
+
+ul.event {
+  list-style-type:none;
+}
+ul.event li {
+  margin-bottom: 0.25em;
+}
+
+p.charities div {
+  margin-bottom: 0.25em;
+}

