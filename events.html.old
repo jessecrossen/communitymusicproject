@@ -1,0 +1,53 @@
+<html>
+	<head>
+
+    <!-- Redirecting to The Goddess Suite Page -->
+    <META http-equiv="refresh" content="0; URL=./tgs-2010.html">
+
+    <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+		<title>The Community Music Project: Events</title>
+		<link href="cmp.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<iframe id="nav" src="nav.html"></iframe>
+
+		<p>
+      <h2>
+        <a href="tgs.html">The Goddess Suite</a> will be performed the last
+        two weekends in June 2010 (June 19-20 and June 26-27) at the following venues:
+      </h2>
+      <ul class="event">
+        <li>
+          ♫ &nbsp;&nbsp;
+          Saturday, June 19, 7 pm, at the
+          <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&CISOPTR=805">Forest Theater</a>
+          (<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=100+country+club+road+chapel+hill+nc&sll=35.912741,-79.044507&sspn=0.006465,0.008111&g=110+country+club+road+chapel+hill+nc&ie=UTF8&hq=&hnear=100+Country+Club+Rd,+Chapel+Hill,+Orange,+Nor">Map of Forest Theater Area</a>)
+          in Chapel Hill.
+        </li>
+        <li>
+          ♫ &nbsp;&nbsp;
+          Sunday, June 20, 7 pm
+          <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Eno+River+Unitarian+Universalist+Fellowship,+Durham,+NC&sll=37.0625,-95.677068&sspn=51.310143,66.445312&ie=UTF8&hq=Eno+River+Unitarian+Universalist+Fellowship,&hnear=Durham,+NC&z=12&iw%20">Eno River Unitarian Universalist Fellowship</a>
+          in Durham.
+        </li>
+        <li>
+          ♫ &nbsp;&nbsp;
+          Saturday, June 26, 7 pm, at the
+          <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Northwood+High+School,+Pittsboro,+NC&sll=35.912306,-79.04779&sspn=0.012495,0.016222&ie=UTF8&hq=Northwood+High+School,&hnear=Pittsboro,+NC&ll=35.756543,-79.172115&spn=0.10016,0.129776&z%20">Northwood High School</a>
+          Auditorium in Pittsboro (pending approval; or another Pittsboro venue).
+        </li>
+        <li>
+          ♫ &nbsp;&nbsp;
+          Sunday, June 27, 7 pm, at the
+          <a href="http://dc.lib.unc.edu/cdm4/item_viewer.php?CISOROOT=/vir_museum&CISOPTR=805">Forest Theater</a>
+          (<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=100+country+club+road+chapel+hill+nc&sll=35.912741,-79.044507&sspn=0.006465,0.008111&g=110+country+club+road+chapel+hill+nc&ie=UTF8&hq=&hnear=100+Country+Club+Rd,+Chapel+Hill,+Orange,+Nor">Map of Forest Theater Area</a>)
+          in Chapel Hill.
+        </li>
+      </ul>
+      <a href="tgs-2010.html">More about The Goddess Suite...</a>
+		</p>
+
+	</body>
+</html>
